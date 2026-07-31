@@ -1,5 +1,107 @@
 /* Small extra polish beyond Tailwind CDN utility classes */
 a { text-decoration: none; }
+
+/* --- Fondo rotativo del hero -------------------------------------------
+   Capas de afiches apiladas; solo la que tiene .is-active es visible.
+   El crossfade se produce por transición de opacity + un ligero zoom
+   ("Ken Burns" sutil) para que no se sienta estático. */
+.hero-bg-layer {
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.2s ease-in-out, transform 6s ease-out;
+  z-index: 0;
+}
+.hero-bg-layer.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* Entrada suave del contenido del hero */
+@keyframes mp-hero-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-hero-in {
+  animation: mp-hero-in 0.7s ease-out both;
+}
+.animate-hero-in-delay-1 { animation-delay: 0.12s; }
+.animate-hero-in-delay-2 { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-layer { transition: opacity 0.4s linear; transform: none !important; }
+  .animate-hero-in, .animate-hero-in-delay-1, .animate-hero-in-delay-2 { animation: none; }
+}
+
+/* --- Reproductor secreto (psicodélico) ----------------------------------
+   Mismo tamaño/estructura que el reproductor normal de grabaciones
+   (#ia-player), pero con borde de gradiente arcoíris girando, glow
+   pulsante y un botón de play que muta de color. Toda la reproducción
+   sigue pasando por window.MPPlayer, así que el audio no se corta al
+   navegar (misma barra inferior persistente que el resto del sitio). */
+@keyframes mp-psy-spin { to { transform: rotate(1turn); } }
+@keyframes mp-psy-hue { to { filter: hue-rotate(1turn); } }
+@keyframes mp-psy-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224, 143, 174, 0.35), 0 0 0 0 rgba(127, 177, 224, 0.25); }
+  50% { box-shadow: 0 0 26px 4px rgba(224, 143, 174, 0.45), 0 0 40px 10px rgba(127, 177, 224, 0.3); }
+}
+@keyframes mp-psy-text {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.mp-psy-card {
+  position: relative;
+  isolation: isolate;
+  animation: mp-psy-pulse 4s ease-in-out infinite;
+}
+.mp-psy-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #7fb1e0, #e08fae, #b98be0, #8be0c4, #7fb1e0);
+  animation: mp-psy-spin 6s linear infinite;
+  z-index: 0;
+}
+.mp-psy-card-inner {
+  position: relative;
+  z-index: 1;
+}
+.mp-psy-cover-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 0.65rem;
+  background: conic-gradient(from 0deg, #e08fae, #7fb1e0, #b98be0, #e08fae);
+  animation: mp-psy-spin 4s linear infinite reverse;
+  z-index: 0;
+}
+.mp-psy-text {
+  background: linear-gradient(90deg, #7fb1e0, #e08fae, #b98be0, #8be0c4, #7fb1e0);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: mp-psy-text 5s ease-in-out infinite;
+}
+.mp-psy-play {
+  background: linear-gradient(135deg, #7fb1e0, #e08fae, #b98be0);
+  background-size: 200% 200%;
+  color: #0f1220;
+  animation: mp-psy-hue 3s linear infinite;
+  transition: transform 0.25s ease-out;
+}
+.mp-psy-play:hover { transform: scale(1.08); }
+.mp-psy-card.mp-psy-playing::before { animation-duration: 1.6s; }
+.mp-psy-card.mp-psy-playing .mp-psy-play { animation-duration: 1.2s; }
+.mp-psy-card.mp-psy-playing { animation-duration: 1.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-psy-card, .mp-psy-card::before, .mp-psy-cover-wrap::before, .mp-psy-text, .mp-psy-play {
+    animation: none !important;
+  }
+}
 input[type="range"] { -webkit-appearance: none; height: 4px; background: #2b3155; border-radius: 2px; }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #7fb1e0; }
 

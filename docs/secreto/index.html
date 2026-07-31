@@ -80,19 +80,74 @@
 </header>
 <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
 <h1 class="font-display text-3xl mb-2">🐊 Registro secreto</h1>
-  <p class="text-mp-muted text-sm mb-8">Encontraste el cocodrilo. Esto no es Matilde Pizarro — es el archivo, muy no oficial, de <strong>Kien Gizza La Longaniza</strong>.</p>
-  <div class="space-y-6">
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
-      <p class="text-mp-muted text-sm mb-3">28/02/2026</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+    <p class="text-mp-muted text-sm mb-8">Encontraste el cocodrilo. Esto no es Matilde Pizarro — es el archivo, muy no oficial, de <strong>Kien Gizza La Longaniza</strong>.</p>
+    <div class="space-y-6">
+    <div class="mp-psy-card rounded-2xl p-[2px]" data-psy-src="https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav">
+      <div class="mp-psy-card-inner rounded-[14px] bg-mp-surface flex items-center gap-4 px-6 py-5">
+        <div class="mp-psy-cover-wrap relative w-16 h-16 shrink-0">
+          <img src="/archivo/public/images/cocodrilo.png" class="w-16 h-16 rounded-lg object-cover border border-mp-surface2 relative z-10" alt="">
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs uppercase tracking-widest text-mp-muted">Registro no oficial</p>
+          <p class="font-display text-lg truncate mp-psy-text">Kien Gizza La Longaniza</p>
+          <p class="text-mp-muted text-sm">28/02/2026</p>
+        </div>
+        <button type="button" class="mp-psy-play ml-auto w-16 h-16 rounded-full flex items-center justify-center text-2xl shrink-0" title="Reproducir" data-idx="0">▶</button>
+      </div>
     </div>
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
-      <p class="text-mp-muted text-sm mb-3">10/05/2025</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-    </div>
-  </div>
+    <div class="mp-psy-card rounded-2xl p-[2px]" data-psy-src="https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav">
+      <div class="mp-psy-card-inner rounded-[14px] bg-mp-surface flex items-center gap-4 px-6 py-5">
+        <div class="mp-psy-cover-wrap relative w-16 h-16 shrink-0">
+          <img src="/archivo/public/images/cocodrilo.png" class="w-16 h-16 rounded-lg object-cover border border-mp-surface2 relative z-10" alt="">
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs uppercase tracking-widest text-mp-muted">Registro no oficial</p>
+          <p class="font-display text-lg truncate mp-psy-text">Kien Gizza La Longaniza</p>
+          <p class="text-mp-muted text-sm">10/05/2025</p>
+        </div>
+        <button type="button" class="mp-psy-play ml-auto w-16 h-16 rounded-full flex items-center justify-center text-2xl shrink-0" title="Reproducir" data-idx="1">▶</button>
+      </div>
+    </div></div>
+    <script>
+    (function () {
+      var tracks = [{"src":"https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav","title":"Kien Gizza La Longaniza","subtitle":"28/02/2026"},{"src":"https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav","title":"Kien Gizza La Longaniza","subtitle":"10/05/2025"}];
+      var buttons = document.querySelectorAll('.mp-psy-play');
+      function setIcon(btn, playing) { btn.textContent = playing ? '⏸' : '▶'; btn.closest('.mp-psy-card').classList.toggle('mp-psy-playing', playing); }
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.dataset.idx, 10);
+          window.MPPlayer.playQueue(tracks, idx);
+        });
+      });
+      function sync() {
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem('mp_player_state_v1') || 'null'); } catch (e) {}
+        var currentSrc = saved && saved.queue && saved.queue[saved.currentIndex] ? saved.queue[saved.currentIndex].src : null;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          setIcon(btn, !!(saved && saved.playing && currentSrc === tracks[idx].src));
+        });
+      }
+      var lastLoadedSrc = null, lastLoadedQueueIndex = -1;
+      window.addEventListener('mp:track', function (e) {
+        var t = e.detail.track;
+        lastLoadedSrc = t ? t.src : null;
+        lastLoadedQueueIndex = e.detail.index;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          setIcon(btn, t && t.src === tracks[idx].src);
+        });
+      });
+      window.addEventListener('mp:playstate', function (e) {
+        if (e.detail.index !== lastLoadedQueueIndex) return;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          if (lastLoadedSrc === tracks[idx].src) setIcon(btn, e.detail.playing);
+        });
+      });
+      sync();
+    })();
+    </script>
 </main>
 <footer class="border-t border-mp-surface2/60 text-center text-xs text-mp-muted py-6">
   <p>Matilde Pizarro Tapes , archivo oficial de grabaciones en vivo, los tkm</p>

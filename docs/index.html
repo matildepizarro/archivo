@@ -82,14 +82,14 @@
 
   <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
     <div class="relative min-h-[420px] flex items-end">
-      <img src="/archivo/public/images/CAFE_MISP.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro">
+      <div id="hero-bg" class="absolute inset-0 w-full h-full" data-interval="4000"><img src="/archivo/public/images/CERVECERIA_POPULAR.webp" class="hero-bg-layer absolute inset-0 w-full h-full object-cover is-active" alt="Matilde Pizarro" loading="eager"><img src="/archivo/public/images/GIZZDAY_3.png" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/JOURNAL.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/LA_PUERTA_AMARILLA.png" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/PLAZA_SUCRE_MARCHA.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/CAFE_MISP.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/70 to-mp-bg/20"></div>
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
-        <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
-        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+        <h1 class="font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
           Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
         </p>
-        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5">
+        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5 animate-hero-in animate-hero-in-delay-2">
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">9</p><p class="text-mp-muted text-xs mt-1">2026–2026</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">4</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Canciones</p><p class="font-display text-3xl">22</p><p class="text-mp-muted text-xs mt-1">en el repertorio</p></div>
@@ -97,6 +97,23 @@
       </div>
     </div>
   </section>
+  <script>
+    (function () {
+      var el = document.getElementById('hero-bg');
+      if (!el) return;
+      var layers = el.querySelectorAll('.hero-bg-layer');
+      if (layers.length < 2) return;
+      var ms = parseInt(el.getAttribute('data-interval'), 10) || 4000;
+      var current = 0;
+      if (el._mpHeroTimer) clearInterval(el._mpHeroTimer);
+      el._mpHeroTimer = setInterval(function () {
+        var next = (current + 1) % layers.length;
+        layers[next].classList.add('is-active');
+        layers[current].classList.remove('is-active');
+        current = next;
+      }, ms);
+    })();
+  </script>
 
   <section class="mb-10 bg-mp-surface border border-mp-surface2 rounded-xl p-5 md:p-6">
     <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
@@ -150,7 +167,7 @@
     <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
   </a><a href="/archivo/shows/2026-08-14-cafe-misp-villa-alemana/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/CAFE_MISP.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/CAFE_MISP.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">14/08/2026</p>
@@ -158,7 +175,7 @@
     <p class="text-mp-muted text-xs truncate">Villa Alemana, Chile</p>
   </a><a href="/archivo/shows/2026-06-27-plaza-sucre-vina-del-mar/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/PLAZA_SUCRE_MARCHA.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/PLAZA_SUCRE_MARCHA.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">27/06/2026</p>
@@ -166,7 +183,7 @@
     <p class="text-mp-muted text-xs truncate">Viña del Mar, Chile</p>
   </a><a href="/archivo/shows/2026-06-18-hotzenplotz-valparaiso/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">18/06/2026</p>
@@ -174,7 +191,7 @@
     <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
   </a><a href="/archivo/shows/2026-05-30-bar-la-puerta-amarilla-santiago/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/LA_PUERTA_AMARILLA.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/LA_PUERTA_AMARILLA.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">30/05/2026</p>
@@ -182,7 +199,7 @@
     <p class="text-mp-muted text-xs truncate">Santiago, Chile</p>
   </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">20/05/2026</p>
@@ -190,7 +207,7 @@
     <p class="text-mp-muted text-xs truncate">Viña del Mar, Chile</p>
   </a><a href="/archivo/shows/2026-03-28-la-sesion-cafe-villa-alemana/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/03/2026</p>
@@ -198,7 +215,7 @@
     <p class="text-mp-muted text-xs truncate">Villa Alemana, Chile</p>
   </a><a href="/archivo/shows/2026-02-28-maka-house-valparaiso/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/02/2026</p>
@@ -206,7 +223,7 @@
     <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
   </a><a href="/archivo/shows/2026-01-03-cerveceria-popular-valparaiso/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/CERVECERIA_POPULAR.webp" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/CERVECERIA_POPULAR.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">03/01/2026</p>
@@ -229,7 +246,7 @@
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"><a href="/archivo/shows/2026-06-18-hotzenplotz-valparaiso/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">18/06/2026</p>
@@ -237,7 +254,7 @@
     <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
   </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">20/05/2026</p>
@@ -245,7 +262,7 @@
     <p class="text-mp-muted text-xs truncate">Viña del Mar, Chile</p>
   </a><a href="/archivo/shows/2026-03-28-la-sesion-cafe-villa-alemana/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/03/2026</p>
@@ -253,7 +270,7 @@
     <p class="text-mp-muted text-xs truncate">Villa Alemana, Chile</p>
   </a><a href="/archivo/shows/2026-02-28-maka-house-valparaiso/" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
-      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">
       <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
     <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/02/2026</p>

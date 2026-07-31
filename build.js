@@ -194,9 +194,9 @@ function footer() {
 }
 
 function showCard(s) {
-  const img = s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">`
+  const img = s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">`
     : `<div class="h-full flex items-center justify-center text-mp-muted text-sm">Sin imagen</div>`;
-  return `<a href="${u('/shows/' + s.slug + '/')}" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent transition group">
+  return `<a href="${u('/shows/' + s.slug + '/')}" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent hover:-translate-y-0.5 transition duration-300 ease-out group">
     <div class="h-40 overflow-hidden bg-mp-surface2">${img}</div>
     <div class="p-4">
       <div class="text-mp-accent text-sm mb-1">${fmtDate(s.date)}</div>
@@ -234,7 +234,7 @@ fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 
 // ---------- Home ----------
 function tapeCard(s) {
-  const img = s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">`
+  const img = s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" alt="">`
     : `<div class="h-full flex items-center justify-center text-mp-muted text-sm bg-mp-surface2">Sin imagen</div>`;
   return `<a href="${u('/shows/' + s.slug + '/')}" class="group block">
     <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
@@ -249,19 +249,22 @@ function tapeCard(s) {
 
 {
   const recent = shows.slice().reverse();
-  const heroImg = recent.find(s => s.poster) ? recent.find(s => s.poster).poster : 'matilde-1.jpg';
+  // Todos los afiches disponibles (posters de shows), sin duplicados, para el fondo rotativo del hero.
+  const heroPosters = [...new Set(shows.filter(s => s.poster).map(s => s.poster))];
+  if (!heroPosters.length) heroPosters.push('matilde-1.jpg');
+  const heroLayersHtml = heroPosters.map((p, i) => `<img src="${u('/public/images/' + p)}" class="hero-bg-layer absolute inset-0 w-full h-full object-cover${i === 0 ? ' is-active' : ''}" alt="Matilde Pizarro" loading="${i === 0 ? 'eager' : 'lazy'}">`).join('');
   const withAudio = shows.filter(s => s.archive).length;
   const content = `
   <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
     <div class="relative min-h-[420px] flex items-end">
-      <img src="${u('/public/images/' + heroImg)}" class="absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro">
+      <div id="hero-bg" class="absolute inset-0 w-full h-full" data-interval="4000">${heroLayersHtml}</div>
       <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/70 to-mp-bg/20"></div>
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
-        <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
-        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+        <h1 class="font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
           Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
         </p>
-        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5">
+        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5 animate-hero-in animate-hero-in-delay-2">
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">${shows.length}</p><p class="text-mp-muted text-xs mt-1">${years[years.length - 1]}–${years[0]}</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">${withAudio}</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Canciones</p><p class="font-display text-3xl">${songs.length}</p><p class="text-mp-muted text-xs mt-1">en el repertorio</p></div>
@@ -269,6 +272,23 @@ function tapeCard(s) {
       </div>
     </div>
   </section>
+  <script>
+    (function () {
+      var el = document.getElementById('hero-bg');
+      if (!el) return;
+      var layers = el.querySelectorAll('.hero-bg-layer');
+      if (layers.length < 2) return;
+      var ms = parseInt(el.getAttribute('data-interval'), 10) || 4000;
+      var current = 0;
+      if (el._mpHeroTimer) clearInterval(el._mpHeroTimer);
+      el._mpHeroTimer = setInterval(function () {
+        var next = (current + 1) % layers.length;
+        layers[next].classList.add('is-active');
+        layers[current].classList.remove('is-active');
+        current = next;
+      }, ms);
+    })();
+  </script>
 
   <section class="mb-10 bg-mp-surface border border-mp-surface2 rounded-xl p-5 md:p-6">
     <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
@@ -561,24 +581,75 @@ write('search', layout({
 }));
 
 // ---------- 🐊 Secreto: Kien Gizza La Longaniza (solo accesible vía el cocodrilo del footer) ----------
-write('secreto', layout({
-  title: '???', active: '',
-  extraHead: `<meta name="robots" content="noindex,nofollow">`,
-  content: `<h1 class="font-display text-3xl mb-2">🐊 Registro secreto</h1>
-  <p class="text-mp-muted text-sm mb-8">Encontraste el cocodrilo. Esto no es Matilde Pizarro — es el archivo, muy no oficial, de <strong>Kien Gizza La Longaniza</strong>.</p>
-  <div class="space-y-6">
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
-      <p class="text-mp-muted text-sm mb-3">28/02/2026</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-    </div>
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
-      <p class="text-mp-muted text-sm mb-3">10/05/2025</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-    </div>
-  </div>`,
-}));
+{
+  const secretCover = u('/public/images/cocodrilo.png');
+  const secretTracks = [
+    { src: 'https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav', title: 'Kien Gizza La Longaniza', subtitle: '28/02/2026' },
+    { src: 'https://archive.org/download/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav', title: 'Kien Gizza La Longaniza', subtitle: '10/05/2025' },
+  ];
+  const secretCardsHtml = secretTracks.map((t, i) => `
+    <div class="mp-psy-card rounded-2xl p-[2px]" data-psy-src="${t.src}">
+      <div class="mp-psy-card-inner rounded-[14px] bg-mp-surface flex items-center gap-4 px-6 py-5">
+        <div class="mp-psy-cover-wrap relative w-16 h-16 shrink-0">
+          <img src="${secretCover}" class="w-16 h-16 rounded-lg object-cover border border-mp-surface2 relative z-10" alt="">
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs uppercase tracking-widest text-mp-muted">Registro no oficial</p>
+          <p class="font-display text-lg truncate mp-psy-text">${t.title}</p>
+          <p class="text-mp-muted text-sm">${t.subtitle}</p>
+        </div>
+        <button type="button" class="mp-psy-play ml-auto w-16 h-16 rounded-full flex items-center justify-center text-2xl shrink-0" title="Reproducir" data-idx="${i}">▶</button>
+      </div>
+    </div>`).join('');
+
+  write('secreto', layout({
+    title: '???', active: '',
+    extraHead: `<meta name="robots" content="noindex,nofollow">`,
+    content: `<h1 class="font-display text-3xl mb-2">🐊 Registro secreto</h1>
+    <p class="text-mp-muted text-sm mb-8">Encontraste el cocodrilo. Esto no es Matilde Pizarro — es el archivo, muy no oficial, de <strong>Kien Gizza La Longaniza</strong>.</p>
+    <div class="space-y-6">${secretCardsHtml}</div>
+    <script>
+    (function () {
+      var tracks = ${JSON.stringify(secretTracks)};
+      var buttons = document.querySelectorAll('.mp-psy-play');
+      function setIcon(btn, playing) { btn.textContent = playing ? '⏸' : '▶'; btn.closest('.mp-psy-card').classList.toggle('mp-psy-playing', playing); }
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.dataset.idx, 10);
+          window.MPPlayer.playQueue(tracks, idx);
+        });
+      });
+      function sync() {
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem('mp_player_state_v1') || 'null'); } catch (e) {}
+        var currentSrc = saved && saved.queue && saved.queue[saved.currentIndex] ? saved.queue[saved.currentIndex].src : null;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          setIcon(btn, !!(saved && saved.playing && currentSrc === tracks[idx].src));
+        });
+      }
+      var lastLoadedSrc = null, lastLoadedQueueIndex = -1;
+      window.addEventListener('mp:track', function (e) {
+        var t = e.detail.track;
+        lastLoadedSrc = t ? t.src : null;
+        lastLoadedQueueIndex = e.detail.index;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          setIcon(btn, t && t.src === tracks[idx].src);
+        });
+      });
+      window.addEventListener('mp:playstate', function (e) {
+        if (e.detail.index !== lastLoadedQueueIndex) return;
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.idx, 10);
+          if (lastLoadedSrc === tracks[idx].src) setIcon(btn, e.detail.playing);
+        });
+      });
+      sync();
+    })();
+    </script>`,
+  }));
+}
 
 // ---------- 404 ----------
 fs.writeFileSync(path.join(OUT, '404.html'), layout({
