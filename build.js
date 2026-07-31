@@ -72,17 +72,21 @@ function layout({ title, active, content, extraHead = '' }) {
 <meta name="description" content="${SITE.description}">
 <link rel="alternate" type="application/rss+xml" title="${SITE.name}" href="${u('/feed.xml')}">
 <link rel="icon" href="${u('/public/images/logo.png')}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 <script src="https://unpkg.com/dexie@3/dist/dexie.js"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: { mp: {
     bg:'#0f1220', surface:'#171b2e', surface2:'#1f2440', accent:'#7fb1e0', accent2:'#e08fae', text:'#e9ecf7', muted:'#8991b0'
-  } } }, fontFamily: { display: ['Georgia','serif'] } } }
+  } } }, fontFamily: { display: ['Fraunces','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] } } }
 </script>
 <style>
-  body{background:#0f1220;color:#e9ecf7}
+  body{background:#0f1220;color:#e9ecf7;font-family:'Inter',system-ui,sans-serif;letter-spacing:.005em}
   .light-mode body{background:#f4f5fb;color:#171b2e}
+  h1,h2,h3,.font-display{font-family:'Fraunces',Georgia,serif;letter-spacing:-.01em}
   ::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:#2b3155;border-radius:4px}
   .waves{background:radial-gradient(circle at 20% 20%,rgba(127,177,224,.15),transparent 40%),radial-gradient(circle at 80% 60%,rgba(224,143,174,.12),transparent 45%)}
 </style>
@@ -141,7 +145,7 @@ function nav(active) {
       ${navLink(u('/top-shows/'), 'Top Shows', active, 'top')}
       ${navLink(u('/favourites/'), 'Shows Favoritos', active, 'fav')}
       ${navLink(u('/settings/'), 'Configuración', active, 'settings')}
-      ${navLink(u('/about/'), 'Acerca de', active, 'about')}
+      <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent transition">Acerca de</a>
       <form action="${u('/search/')}" method="get" class="flex items-center gap-1">
         <input type="text" name="q" placeholder="Buscar…" class="bg-mp-surface2 rounded px-2 py-1 text-mp-text text-sm w-32 focus:w-48 transition-all outline-none focus:ring-1 focus:ring-mp-accent">
       </form>
@@ -160,8 +164,10 @@ function footer() {
     <a href="${LINKS.youtube}" target="_blank" rel="noopener" class="hover:text-mp-accent">YouTube</a>
     <a href="${LINKS.bandcamp}" target="_blank" rel="noopener" class="hover:text-mp-accent">Bandcamp</a>
     <a href="${LINKS.setlistfm}" target="_blank" rel="noopener" class="hover:text-mp-accent">Setlist.fm</a>
+    <a href="mailto:${LINKS.email}" class="hover:text-mp-accent">Correo</a>
+    <a href="${LINKS.whatsapp}" target="_blank" rel="noopener" class="hover:text-mp-accent">WhatsApp</a>
   </p>
-  <p class="mt-1"><a href="${u('/feed.xml')}" class="hover:text-mp-accent">RSS</a> · <a href="${u('/data.json')}" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="${u('/about/')}" class="hover:text-mp-accent">Acerca de</a></p>
+  <p class="mt-1"><a href="${u('/data.json')}" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent">Acerca de</a></p>
 </footer>
 <div id="player-bar" class="fixed bottom-0 left-0 right-0 bg-mp-surface border-t border-mp-surface2 z-50 hidden">
   <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3 flex-wrap">
@@ -250,7 +256,7 @@ function tapeCard(s) {
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
         <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
         <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
-          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="${u('/about/')}" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por y para la comunidad. Es un sitio <strong>estrictamente no oficial</strong>, sin ninguna relación formal con la artista. Todo el audio está alojado y se transmite desde <a href="https://archive.org" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Internet Archive</a>.
+          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
         </p>
         <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5">
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">${shows.length}</p><p class="text-mp-muted text-xs mt-1">${years[years.length - 1]}–${years[0]}</p></div>
@@ -261,20 +267,40 @@ function tapeCard(s) {
     </div>
   </section>
 
-  <section class="grid sm:grid-cols-2 gap-4 mb-10">
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <h3 class="font-display text-lg mb-3">Recibe novedades</h3>
-      <div class="flex flex-wrap gap-3">
-        <a href="${LINKS.instagram}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📷 Síguenos en Instagram</a>
-        <a href="${u('/feed.xml')}" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📡 Feed Atom / RSS</a>
-      </div>
+  <section class="mb-10 bg-mp-surface border border-mp-surface2 rounded-xl p-5 md:p-6">
+    <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+      <h2 class="font-display text-2xl">Próximos shows</h2>
+      <a href="https://www.bandsintown.com/a/15646592-matilde-pizarro?came_from=281&utm_medium=web&utm_source=artist_event_page&utm_campaign=artist&noindex=1" target="_blank" rel="noopener" class="text-sm text-mp-accent hover:underline">» Ver en Bandsintown</a>
     </div>
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
-      <h3 class="font-display text-lg mb-3">Escucha en otras plataformas</h3>
-      <div class="flex flex-wrap gap-3">
-        <a href="${LINKS.spotify}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">🎧 Spotify</a>
-        <a href="${LINKS.bandcamp}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">💿 Bandcamp</a>
-      </div>
+    <a class="bit-widget-initializer"
+       data-artist-name="id_15646592"
+       data-display-local-dates="false"
+       data-display-past-dates="false"
+       data-auto-style="false"
+       data-text-color="#e9ecf7"
+       data-link-color="#7fb1e0"
+       data-background-color="transparent"
+       data-display-limit="5"
+       data-display-start-time="false"
+       data-separator-color="#1f2440"
+       data-display-lineup="false"
+       data-display-play-my-city="false"
+       data-font="Inter"></a>
+    <script src="https://widget.bandsintown.com/main.min.js"></script>
+    <noscript><p class="text-sm text-mp-muted">Activa JavaScript para ver los próximos shows, o <a href="https://www.bandsintown.com/a/15646592-matilde-pizarro?came_from=281&utm_medium=web&utm_source=artist_event_page&utm_campaign=artist&noindex=1" target="_blank" rel="noopener" class="text-mp-accent hover:underline">míralos en Bandsintown</a>.</p></noscript>
+  </section>
+
+  <section class="mb-10 bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+    <h3 class="font-display text-lg mb-3">Sigue a Matilde Pizarro</h3>
+    <div class="flex flex-wrap gap-3">
+      <a href="mailto:${LINKS.email}" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">✉️ Correo</a>
+      <a href="${LINKS.whatsapp}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">💬 WhatsApp</a>
+      <a href="${LINKS.instagram}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📷 Instagram</a>
+      <a href="${LINKS.spotify}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">🎧 Spotify</a>
+      <a href="${LINKS.appleMusic}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">🍎 Apple Music</a>
+      <a href="${LINKS.bandcamp}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">💿 Bandcamp</a>
+      <a href="${LINKS.youtube}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">▶️ YouTube</a>
+      <a href="${LINKS.setlistfm}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📋 Setlist.fm</a>
     </div>
   </section>
 
@@ -454,53 +480,8 @@ write('top-shows', layout({
   <div class="space-y-2">${shows.slice().reverse().map(showRow).join('')}</div>`,
 }));
 
-// ---------- About ----------
-write('about', layout({
-  title: 'Acerca de', active: 'about',
-  content: `
-  <section class="grid md:grid-cols-2 gap-8 mb-10 items-center">
-    <div>
-      <p class="uppercase tracking-widest text-mp-accent2 text-xs mb-3">Acerca de</p>
-      <h1 class="font-display text-4xl mb-4">Matilde Pizarro</h1>
-      <p class="text-mp-muted mb-4">Cantautora chilena originaria de Quilpué. Rock alternativo / dream pop / indie rock / shoegaze.</p>
-      <p class="text-sm text-mp-muted">Villa Alemana, Valparaíso, Chile.</p>
-    </div>
-    <div class="rounded-xl overflow-hidden border border-mp-surface2">
-      <img src="${u('/public/images/matilde-2.jpg')}" class="w-full h-full object-cover" alt="Matilde Pizarro en vivo">
-    </div>
-  </section>
-  <section class="mb-10 bg-mp-surface border border-mp-surface2 rounded-xl p-6 md:p-8 space-y-4 text-sm leading-relaxed">
-    <h2 class="font-display text-2xl mb-2">Historia del proyecto</h2>
-    <p>Su recorrido musical comenzó mucho antes de su proyecto solista: entre 2011 y 2019 se desempeñó como guitarrista en las bandas Time y Miopía, llevando su música a distintos escenarios y festivales a lo largo de Chile, experiencia que consolidó su trabajo en vivo.</p>
-    <p>Entre 2018 y 2025 desarrolló su proyecto solista bajo el nombre Timbuka, etapa en la que publicó un EP en 2019, un disco en 2020 y distintas canciones que la proyectaron hacia nuevos públicos, incluyendo participaciones en festivales online en México y España, presentaciones en universidades y distintos espacios de Chile. Durante ese periodo también se destacaron notas de prensa en diversos medios. Su trabajo se movió entre el indie/folk y la psicodelia, siempre desde una mirada introspectiva y personal.</p>
-    <p>En 2026 inicia una nueva etapa artística bajo su nombre real, marcando un renacimiento creativo que acompaña una transformación musical y personal. Este nuevo ciclo abrió con presentaciones en vivo durante el año y tomó forma en abril con el lanzamiento de los singles "TEXTURAS" y "VUELO", preparando lo que será su primer disco como Matilde Pizarro.</p>
-  </section>
-  <section class="grid md:grid-cols-2 gap-4 mb-10">
-    <div class="bg-mp-surface2 rounded-xl p-5"><h3 class="font-display text-lg mb-2">🎸 Acústico</h3><p class="text-sm text-mp-muted">Guitarra electroacústica acompañada de dos voces amplificadas.</p></div>
-    <div class="bg-mp-surface2 rounded-xl p-5"><h3 class="font-display text-lg mb-2">⚡ Eléctrico</h3><p class="text-sm text-mp-muted">Formato adaptable a dúo o trío.</p></div>
-  </section>
-  <section class="mb-10">
-    <h2 class="font-display text-2xl mb-4">Lanzamientos</h2>
-    <div class="space-y-2 text-sm">${RELEASES.map(r => `<div class="flex justify-between bg-mp-surface rounded-lg px-4 py-3 border border-mp-surface2"><span>${r.title}</span><span class="text-mp-muted">${fmtDate(r.date)}</span></div>`).join('')}</div>
-  </section>
-  <section class="mb-10">
-    <h2 class="font-display text-2xl mb-4">Videos oficiales</h2>
-    <div class="grid sm:grid-cols-2 gap-3 text-sm">${VIDEOS.map(v => `<a href="${v.url}" target="_blank" rel="noopener" class="bg-mp-surface hover:bg-mp-surface2 rounded-lg px-4 py-3 border border-mp-surface2">${v.title}</a>`).join('')}</div>
-  </section>
-  <section class="mb-10">
-    <h2 class="font-display text-2xl mb-4">Prensa</h2>
-    ${PRESS.map(p => `<a href="${p.url}" target="_blank" rel="noopener" class="block bg-mp-surface hover:bg-mp-surface2 rounded-lg px-4 py-3 border border-mp-surface2 text-sm">${p.title}</a>`).join('')}
-  </section>
-  <section class="mb-10">
-    <h2 class="font-display text-2xl mb-4">Contacto</h2>
-    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-6 text-sm space-y-1">
-      <p><span class="text-mp-muted">Representante:</span> Matilde Pizarro</p>
-      <p><span class="text-mp-muted">Correo:</span> <a class="text-mp-accent hover:underline" href="mailto:${LINKS.email}">${LINKS.email}</a></p>
-      <p><span class="text-mp-muted">WhatsApp:</span> <a class="text-mp-accent hover:underline" href="${LINKS.whatsapp}">+56 9 7171 0225</a></p>
-      <p><span class="text-mp-muted">Ciudad:</span> Villa Alemana, Valparaíso, Chile</p>
-    </div>
-  </section>`,
-}));
+// ---------- About: eliminado — ahora enlaza directo al presskit externo ----------
+// https://matildepizarro.github.io/presskit/ (ver nav() y footer())
 
 // ---------- Favourites (client-side via Dexie/IndexedDB) ----------
 write('favourites', layout({
