@@ -93,18 +93,14 @@
     <button data-fav-slug="2026-02-28-maka-house-valparaiso" data-fav-title="Maka House" data-fav-subtitle="28/02/2026 · Valparaíso" class="ml-auto text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition shrink-0">☆ Agregar a favoritos</button>
   </div>
   <p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">Set de Matilde Pizarro en el marco de Gizzday Vol. III, evento tributo a King Gizzard & The Lizard Wizard en Valparaíso.</p>
-  <div class="grid lg:grid-cols-3 gap-8">
-    <div class="lg:col-span-2">
-      <h2 class="font-display text-2xl mb-3">Grabación</h2>
-      <div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="matilde-pizarro-at-gizzday3" data-title="Maka House, Valparaíso" data-subtitle="28/02/2026" data-cover="/archivo/public/images/GIZZDAY_3.png">
+  <h2 class="font-display text-3xl mb-4">Grabación</h2>
+  <div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="matilde-pizarro-at-gizzday3" data-title="Maka House, Valparaíso" data-subtitle="28/02/2026" data-cover="/archivo/public/images/GIZZDAY_3.png">
         <div class="p-4 text-sm text-mp-muted">Cargando grabación desde archive.org…</div>
       </div>
       <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/matilde-pizarro-at-gizzday3" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a>.</p>
-    </div>
-    <div class="text-sm">
-      <h2 class="font-display text-base text-mp-muted mb-2 uppercase tracking-widest">Setlist</h2>
-      <div class="opacity-90 text-sm"><ol class="space-y-1"><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">1.</span><a href="/archivo/songs/theia/" class="hover:text-mp-accent">Theia</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">2.</span><a href="/archivo/songs/the-silver-cord/" class="hover:text-mp-accent">The Silver Cord</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">3.</span><a href="/archivo/songs/sad-pilot/" class="hover:text-mp-accent">Sad Pilot</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">4.</span><a href="/archivo/songs/lunar/" class="hover:text-mp-accent">LUNAR</a></li></ol></div>
-    </div>
+  <div class="mt-10 pt-6 border-t border-mp-surface2">
+    <h2 class="font-display text-sm text-mp-muted mb-3 uppercase tracking-widest">Setlist</h2>
+    <div class="text-mp-muted text-sm opacity-80 columns-2 sm:columns-3 gap-x-8"><ol class="space-y-1"><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">1.</span><a href="/archivo/songs/theia/" class="hover:text-mp-accent">Theia</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">2.</span><a href="/archivo/songs/the-silver-cord/" class="hover:text-mp-accent">The Silver Cord</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">3.</span><a href="/archivo/songs/sad-pilot/" class="hover:text-mp-accent">Sad Pilot</a></li><li class="flex gap-3"><span class="text-mp-muted w-6 text-right">4.</span><a href="/archivo/songs/lunar/" class="hover:text-mp-accent">LUNAR</a></li></ol></div>
   </div>
 </main>
 <footer class="border-t border-mp-surface2/60 text-center text-xs text-mp-muted py-6">
@@ -138,6 +134,7 @@
     </div>
   </div>
 </div>
+<script src="/archivo/public/js/pjax.js"></script>
 <script src="/archivo/public/js/player.js"></script>
 <script src="/archivo/public/js/archive-player.js"></script>
 <script src="/archivo/public/js/favourites.js"></script>

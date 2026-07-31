@@ -45,8 +45,10 @@
     `).join('');
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function init() {
     refreshButtons();
     renderFavouritesList();
-  });
+  }
+  window.MPInitFavourites = init;
+  document.addEventListener('DOMContentLoaded', init);
 })();

@@ -96,6 +96,7 @@ ${nav(active)}
 ${content}
 </main>
 ${footer()}
+<script src="${u('/public/js/pjax.js')}"></script>
 <script src="${u('/public/js/player.js')}"></script>
 <script src="${u('/public/js/archive-player.js')}"></script>
 <script src="${u('/public/js/favourites.js')}"></script>
@@ -223,39 +224,83 @@ fs.writeFileSync(path.join(OUT, 'public', 'audio', '.gitkeep'), '');
 fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 
 // ---------- Home ----------
+function tapeCard(s) {
+  const img = s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">`
+    : `<div class="h-full flex items-center justify-center text-mp-muted text-sm bg-mp-surface2">Sin imagen</div>`;
+  return `<a href="${u('/shows/' + s.slug + '/')}" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      ${img}
+      ${s.archive ? `<span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>` : ''}
+    </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">${fmtDateShort(s.date)}</p>
+    <p class="text-sm font-semibold truncate">${s.venue.name}</p>
+    <p class="text-mp-muted text-xs truncate">${s.venue.city}, ${s.venue.country}</p>
+  </a>`;
+}
+
 {
-  const recent = shows.slice(-6).reverse();
-  const heroImg = recent[0] && recent[0].poster ? recent[0].poster : null;
+  const recent = shows.slice().reverse();
+  const heroImg = recent.find(s => s.poster) ? recent.find(s => s.poster).poster : 'matilde-1.jpg';
+  const withAudio = shows.filter(s => s.archive).length;
   const content = `
-  <section class="rounded-2xl overflow-hidden relative mb-10 bg-mp-surface border border-mp-surface2">
-    <div class="grid md:grid-cols-2 gap-0">
-      <div class="p-8 md:p-12 flex flex-col justify-center">
-        <p class="uppercase tracking-widest text-mp-accent2 text-xs mb-3">Archivo en vivo</p>
-        <h1 class="font-display text-4xl md:text-5xl mb-4 leading-tight">Matilde Pizarro <span class="text-mp-accent">Tapes</span></h1>
-        <p class="text-mp-muted mb-6">Un archivo de grabaciones en vivo — shows, setlists y cintas, todo en un solo lugar. Sin cuenta, sin anuncios, hecho por y para la comunidad.</p>
-        <div class="flex flex-wrap gap-3">
-          <a href="${u('/shows/')}" class="bg-mp-accent text-mp-bg px-5 py-2 rounded-full font-semibold hover:opacity-90 transition">Ver todos los shows</a>
-          <a href="${u('/about/')}" class="border border-mp-accent text-mp-accent px-5 py-2 rounded-full font-semibold hover:bg-mp-accent hover:text-mp-bg transition">Acerca de Matilde</a>
+  <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
+    <div class="relative min-h-[420px] flex items-end">
+      <img src="${u('/public/images/' + heroImg)}" class="absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro">
+      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/70 to-mp-bg/20"></div>
+      <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
+        <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="${u('/about/')}" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por y para la comunidad. Es un sitio <strong>estrictamente no oficial</strong>, sin ninguna relación formal con la artista. Todo el audio está alojado y se transmite desde <a href="https://archive.org" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Internet Archive</a>.
+        </p>
+        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5">
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">${shows.length}</p><p class="text-mp-muted text-xs mt-1">${years[years.length - 1]}–${years[0]}</p></div>
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">${withAudio}</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Canciones</p><p class="font-display text-3xl">${songs.length}</p><p class="text-mp-muted text-xs mt-1">en el repertorio</p></div>
         </div>
-        <div class="flex gap-6 mt-8 text-sm text-mp-muted">
-          <div><span class="text-2xl font-display text-mp-text">${shows.length}</span><br>shows</div>
-          <div><span class="text-2xl font-display text-mp-text">${songs.length}</span><br>canciones</div>
-          <div><span class="text-2xl font-display text-mp-text">${VENUES.length}</span><br>venues</div>
-        </div>
-      </div>
-      <div class="relative min-h-[280px] bg-mp-surface2">
-        <img src="${u('/public/images/' + (heroImg || 'matilde-1.jpg'))}" class="w-full h-full object-cover opacity-90" alt="Matilde Pizarro">
-        <div class="absolute inset-0 bg-gradient-to-t from-mp-surface via-transparent to-transparent"></div>
       </div>
     </div>
   </section>
+
+  <section class="grid sm:grid-cols-2 gap-4 mb-10">
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <h3 class="font-display text-lg mb-3">Recibe novedades</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="${LINKS.instagram}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📷 Síguenos en Instagram</a>
+        <a href="${u('/feed.xml')}" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📡 Feed Atom / RSS</a>
+      </div>
+    </div>
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <h3 class="font-display text-lg mb-3">Escucha en otras plataformas</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="${LINKS.spotify}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">🎧 Spotify</a>
+        <a href="${LINKS.bandcamp}" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">💿 Bandcamp</a>
+      </div>
+    </div>
+  </section>
+
   <section class="mb-10">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display text-2xl">Shows recientes</h2>
-      <a href="${u('/shows/')}" class="text-sm text-mp-accent hover:underline">Ver todos →</a>
+      <h2 class="font-display text-2xl">Shows más recientes</h2>
+      <a href="${u('/shows/')}" class="text-sm text-mp-accent hover:underline">» Ver todos</a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">${recent.map(showCard).join('')}</div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">${recent.map(tapeCard).join('')}</div>
   </section>
+
+  <section class="mb-10">
+    <h2 class="font-display text-xl mb-4 text-center">Explorar por año</h2>
+    <div class="flex flex-wrap justify-center gap-2 bg-mp-surface border border-mp-surface2 rounded-full px-4 py-3">
+      ${years.slice().reverse().map(y => `<a href="${u('/years/' + y + '/')}" class="text-sm text-mp-muted hover:text-mp-accent px-3 py-1 rounded-full hover:bg-mp-surface2 transition">${y}</a>`).join('')}
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-display text-2xl">Últimas grabaciones subidas</h2>
+      <a href="${u('/shows/')}" class="text-sm text-mp-accent hover:underline">» Ver todas</a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">${shows.filter(s => s.archive).slice().reverse().map(tapeCard).join('') || '<p class="text-mp-muted text-sm col-span-full">Aún no hay grabaciones subidas.</p>'}</div>
+  </section>
+
   <section class="grid sm:grid-cols-3 gap-4 mb-10">
     <a href="${u('/years/')}" class="bg-mp-surface2 rounded-xl p-5 text-center hover:bg-mp-surface transition"><div class="text-2xl mb-2">📅</div>Por año</a>
     <a href="${u('/venues/')}" class="bg-mp-surface2 rounded-xl p-5 text-center hover:bg-mp-surface transition"><div class="text-2xl mb-2">📍</div>Por venue</a>
@@ -306,15 +351,11 @@ for (let i = 0; i < shows.length; i++) {
     <button data-fav-slug="${s.slug}" data-fav-title="${s.venue.name}" data-fav-subtitle="${fmtDateShort(s.date)} · ${s.venue.city}" class="ml-auto text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition shrink-0">☆ Agregar a favoritos</button>
   </div>
   ${s.notes ? `<p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">${s.notes}</p>` : ''}
-  <div class="grid lg:grid-cols-3 gap-8">
-    <div class="lg:col-span-2">
-      <h2 class="font-display text-2xl mb-3">Grabación</h2>
-      ${tracksHtml}
-    </div>
-    <div class="text-sm">
-      <h2 class="font-display text-base text-mp-muted mb-2 uppercase tracking-widest">Setlist</h2>
-      <div class="opacity-90 text-sm">${setlist}</div>
-    </div>
+  <h2 class="font-display text-3xl mb-4">Grabación</h2>
+  ${tracksHtml}
+  <div class="mt-10 pt-6 border-t border-mp-surface2">
+    <h2 class="font-display text-sm text-mp-muted mb-3 uppercase tracking-widest">Setlist</h2>
+    <div class="text-mp-muted text-sm opacity-80 columns-2 sm:columns-3 gap-x-8">${setlist}</div>
   </div>`;
   write('shows/' + s.slug, layout({ title: `${fmtDateShort(s.date)} - ${s.venue.name}`, active: 'shows', content }));
 }

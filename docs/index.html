@@ -77,63 +77,128 @@
 </header>
 <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
 
-  <section class="rounded-2xl overflow-hidden relative mb-10 bg-mp-surface border border-mp-surface2">
-    <div class="grid md:grid-cols-2 gap-0">
-      <div class="p-8 md:p-12 flex flex-col justify-center">
-        <p class="uppercase tracking-widest text-mp-accent2 text-xs mb-3">Archivo en vivo</p>
-        <h1 class="font-display text-4xl md:text-5xl mb-4 leading-tight">Matilde Pizarro <span class="text-mp-accent">Tapes</span></h1>
-        <p class="text-mp-muted mb-6">Un archivo de grabaciones en vivo — shows, setlists y cintas, todo en un solo lugar. Sin cuenta, sin anuncios, hecho por y para la comunidad.</p>
-        <div class="flex flex-wrap gap-3">
-          <a href="/archivo/shows/" class="bg-mp-accent text-mp-bg px-5 py-2 rounded-full font-semibold hover:opacity-90 transition">Ver todos los shows</a>
-          <a href="/archivo/about/" class="border border-mp-accent text-mp-accent px-5 py-2 rounded-full font-semibold hover:bg-mp-accent hover:text-mp-bg transition">Acerca de Matilde</a>
+  <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
+    <div class="relative min-h-[420px] flex items-end">
+      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro">
+      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/70 to-mp-bg/20"></div>
+      <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
+        <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="/archivo/about/" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por y para la comunidad. Es un sitio <strong>estrictamente no oficial</strong>, sin ninguna relación formal con la artista. Todo el audio está alojado y se transmite desde <a href="https://archive.org" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Internet Archive</a>.
+        </p>
+        <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5">
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">4</p><p class="text-mp-muted text-xs mt-1">2026–2026</p></div>
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">4</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>
+          <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Canciones</p><p class="font-display text-3xl">22</p><p class="text-mp-muted text-xs mt-1">en el repertorio</p></div>
         </div>
-        <div class="flex gap-6 mt-8 text-sm text-mp-muted">
-          <div><span class="text-2xl font-display text-mp-text">4</span><br>shows</div>
-          <div><span class="text-2xl font-display text-mp-text">22</span><br>canciones</div>
-          <div><span class="text-2xl font-display text-mp-text">10</span><br>venues</div>
-        </div>
-      </div>
-      <div class="relative min-h-[280px] bg-mp-surface2">
-        <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover opacity-90" alt="Matilde Pizarro">
-        <div class="absolute inset-0 bg-gradient-to-t from-mp-surface via-transparent to-transparent"></div>
       </div>
     </div>
   </section>
+
+  <section class="grid sm:grid-cols-2 gap-4 mb-10">
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <h3 class="font-display text-lg mb-3">Recibe novedades</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://www.instagram.com/matildepizarro_/" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📷 Síguenos en Instagram</a>
+        <a href="/archivo/feed.xml" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">📡 Feed Atom / RSS</a>
+      </div>
+    </div>
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <h3 class="font-display text-lg mb-3">Escucha en otras plataformas</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://open.spotify.com/intl-es/artist/61uAvgWnuDMNYrj2gpKxrg" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">🎧 Spotify</a>
+        <a href="https://matildepizarro.bandcamp.com/album/texturas-vuelo" target="_blank" rel="noopener" class="flex items-center gap-2 bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg transition rounded-lg px-4 py-2 text-sm">💿 Bandcamp</a>
+      </div>
+    </div>
+  </section>
+
   <section class="mb-10">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display text-2xl">Shows recientes</h2>
-      <a href="/archivo/shows/" class="text-sm text-mp-accent hover:underline">Ver todos →</a>
+      <h2 class="font-display text-2xl">Shows más recientes</h2>
+      <a href="/archivo/shows/" class="text-sm text-mp-accent hover:underline">» Ver todos</a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><a href="/archivo/shows/2026-06-18-hotzenplotz-valparaiso/" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent transition group">
-    <div class="h-40 overflow-hidden bg-mp-surface2"><img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt=""></div>
-    <div class="p-4">
-      <div class="text-mp-accent text-sm mb-1">18 jun 2026</div>
-      <div class="font-semibold">Hotzenplotz</div>
-      <div class="text-mp-muted text-sm">Valparaíso</div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"><a href="/archivo/shows/2026-06-18-hotzenplotz-valparaiso/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
-  </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent transition group">
-    <div class="h-40 overflow-hidden bg-mp-surface2"><img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt=""></div>
-    <div class="p-4">
-      <div class="text-mp-accent text-sm mb-1">20 may 2026</div>
-      <div class="font-semibold">Café Journal</div>
-      <div class="text-mp-muted text-sm">Viña del Mar</div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">18/06/2026</p>
+    <p class="text-sm font-semibold truncate">Hotzenplotz</p>
+    <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
+  </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
-  </a><a href="/archivo/shows/2026-03-28-la-sesion-cafe-villa-alemana/" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent transition group">
-    <div class="h-40 overflow-hidden bg-mp-surface2"><img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition" alt=""></div>
-    <div class="p-4">
-      <div class="text-mp-accent text-sm mb-1">28 mar 2026</div>
-      <div class="font-semibold">La Sesión Café</div>
-      <div class="text-mp-muted text-sm">Villa Alemana</div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">20/05/2026</p>
+    <p class="text-sm font-semibold truncate">Café Journal</p>
+    <p class="text-mp-muted text-xs truncate">Viña del Mar, Chile</p>
+  </a><a href="/archivo/shows/2026-03-28-la-sesion-cafe-villa-alemana/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
-  </a><a href="/archivo/shows/2026-02-28-maka-house-valparaiso/" class="bg-mp-surface rounded-xl overflow-hidden border border-mp-surface2 hover:border-mp-accent transition group">
-    <div class="h-40 overflow-hidden bg-mp-surface2"><img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt=""></div>
-    <div class="p-4">
-      <div class="text-mp-accent text-sm mb-1">28 feb 2026</div>
-      <div class="font-semibold">Maka House</div>
-      <div class="text-mp-muted text-sm">Valparaíso</div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/03/2026</p>
+    <p class="text-sm font-semibold truncate">La Sesión Café</p>
+    <p class="text-mp-muted text-xs truncate">Villa Alemana, Chile</p>
+  </a><a href="/archivo/shows/2026-02-28-maka-house-valparaiso/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
     </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/02/2026</p>
+    <p class="text-sm font-semibold truncate">Maka House</p>
+    <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
   </a></div>
   </section>
+
+  <section class="mb-10">
+    <h2 class="font-display text-xl mb-4 text-center">Explorar por año</h2>
+    <div class="flex flex-wrap justify-center gap-2 bg-mp-surface border border-mp-surface2 rounded-full px-4 py-3">
+      <a href="/archivo/years/2026/" class="text-sm text-mp-muted hover:text-mp-accent px-3 py-1 rounded-full hover:bg-mp-surface2 transition">2026</a>
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-display text-2xl">Últimas grabaciones subidas</h2>
+      <a href="/archivo/shows/" class="text-sm text-mp-accent hover:underline">» Ver todas</a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"><a href="/archivo/shows/2026-06-18-hotzenplotz-valparaiso/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
+    </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">18/06/2026</p>
+    <p class="text-sm font-semibold truncate">Hotzenplotz</p>
+    <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
+  </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/JOURNAL.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
+    </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">20/05/2026</p>
+    <p class="text-sm font-semibold truncate">Café Journal</p>
+    <p class="text-mp-muted text-xs truncate">Viña del Mar, Chile</p>
+  </a><a href="/archivo/shows/2026-03-28-la-sesion-cafe-villa-alemana/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
+    </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/03/2026</p>
+    <p class="text-sm font-semibold truncate">La Sesión Café</p>
+    <p class="text-mp-muted text-xs truncate">Villa Alemana, Chile</p>
+  </a><a href="/archivo/shows/2026-02-28-maka-house-valparaiso/" class="group block">
+    <div class="relative rounded-xl overflow-hidden border border-mp-surface2 aspect-square bg-mp-surface2">
+      <img src="/archivo/public/images/GIZZDAY_3.png" class="w-full h-full object-cover group-hover:scale-105 transition" alt="">
+      <span class="absolute top-2 right-2 bg-mp-accent text-mp-bg text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">🎧 grabación</span>
+    </div>
+    <p class="text-mp-accent text-sm mt-2 group-hover:underline">28/02/2026</p>
+    <p class="text-sm font-semibold truncate">Maka House</p>
+    <p class="text-mp-muted text-xs truncate">Valparaíso, Chile</p>
+  </a></div>
+  </section>
+
   <section class="grid sm:grid-cols-3 gap-4 mb-10">
     <a href="/archivo/years/" class="bg-mp-surface2 rounded-xl p-5 text-center hover:bg-mp-surface transition"><div class="text-2xl mb-2">📅</div>Por año</a>
     <a href="/archivo/venues/" class="bg-mp-surface2 rounded-xl p-5 text-center hover:bg-mp-surface transition"><div class="text-2xl mb-2">📍</div>Por venue</a>
@@ -171,6 +236,7 @@
     </div>
   </div>
 </div>
+<script src="/archivo/public/js/pjax.js"></script>
 <script src="/archivo/public/js/player.js"></script>
 <script src="/archivo/public/js/archive-player.js"></script>
 <script src="/archivo/public/js/favourites.js"></script>

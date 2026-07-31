@@ -4,14 +4,25 @@
 // obtienen en el navegador del usuario desde la API pública de archive.org
 // (no requiere subir nada al repo).
 (function () {
-  const containers = document.querySelectorAll('#ia-player');
-  if (!containers.length) return;
-
   function fmtTime(sec) {
-    sec = Math.round(parseFloat(sec) || 0);
-    const m = Math.floor(sec / 60);
+    sec = Math.round(sec || 0);
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
     const s = String(sec % 60).padStart(2, '0');
-    return `${m}:${s}`;
+    return h ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`;
+  }
+
+  // archive.org's `length` field is sometimes plain seconds ("177.34") and
+  // sometimes a "MM:SS" / "H:MM:SS" string ("2:57") depending on the item —
+  // parseFloat alone truncates at the colon and silently returns garbage.
+  function toSeconds(length) {
+    if (length == null) return 0;
+    const str = String(length).trim();
+    if (str.includes(':')) {
+      return str.split(':').map(Number).reduce((acc, p) => acc * 60 + (isNaN(p) ? 0 : p), 0);
+    }
+    const n = parseFloat(str);
+    return isNaN(n) ? 0 : n;
   }
 
   // Limpia títulos de archivo tipo "03 - Fondo.mp3" -> "Fondo"
@@ -71,19 +82,24 @@
       src: baseUrl + encodeURIComponent(f.name),
       title: cleanTitle(f.name, f.title),
       subtitle: `${showTitle} · ${showSubtitle}`,
-      duration: f.length,
+      duration: toSeconds(f.length),
     }));
 
     container.innerHTML = `
-      <div class="flex items-center justify-between px-5 py-4 border-b border-mp-surface2">
-        <span class="text-xs uppercase tracking-widest text-mp-muted">Grabación completa</span>
-        <button id="ia-play-all" class="w-12 h-12 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center hover:opacity-90 transition text-lg" title="Reproducir todo">▶</button>
+      <div class="flex items-center gap-4 px-6 py-5 border-b border-mp-surface2 bg-mp-surface2/40">
+        <img src="${cover}" class="w-16 h-16 rounded-lg object-cover border border-mp-surface2 shrink-0" alt="">
+        <div class="min-w-0">
+          <p class="text-xs uppercase tracking-widest text-mp-muted">Grabación completa</p>
+          <p class="font-display text-lg truncate">${showTitle}</p>
+          <p class="text-mp-muted text-sm">${showSubtitle} · ${tracks.length} pista${tracks.length === 1 ? '' : 's'}</p>
+        </div>
+        <button id="ia-play-all" class="ml-auto w-16 h-16 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center hover:opacity-90 transition text-2xl shrink-0" title="Reproducir todo">▶</button>
       </div>
       <div id="ia-tracklist">
         ${tracks.map((t, i) => `
-          <button data-idx="${i}" class="ia-row w-full flex items-center justify-between gap-3 px-5 py-3.5 text-base hover:bg-mp-surface2 transition text-left border-b border-mp-surface2/60 last:border-b-0">
+          <button data-idx="${i}" class="ia-row w-full flex items-center justify-between gap-4 px-6 py-4 text-lg hover:bg-mp-surface2 transition text-left border-b border-mp-surface2/60 last:border-b-0">
             <span class="flex items-center gap-4 min-w-0">
-              <span class="ia-row-num text-mp-muted w-6 text-right shrink-0">${i + 1}</span>
+              <span class="ia-row-num text-mp-muted w-7 text-right shrink-0 text-base">${i + 1}</span>
               <span class="ia-row-title truncate font-medium">${t.title}</span>
             </span>
             <span class="text-mp-muted text-sm shrink-0">${t.duration ? fmtTime(t.duration) : ''}</span>
@@ -123,5 +139,11 @@
     });
   }
 
-  containers.forEach(loadPlayer);
+  function init() {
+    const containers = document.querySelectorAll('#ia-player:not([data-mp-inited])');
+    containers.forEach(c => { c.setAttribute('data-mp-inited', '1'); loadPlayer(c); });
+  }
+
+  window.MPInitArchivePlayer = init;
+  init();
 })();
