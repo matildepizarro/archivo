@@ -570,12 +570,12 @@ write('secreto', layout({
     <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
       <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
       <p class="text-mp-muted text-sm mb-3">28/02/2026</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2028%2002%202026.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
     </div>
     <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
       <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
       <p class="text-mp-muted text-sm mb-3">10/05/2025</p>
-      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo_202607/Kien%20Gizza%20La%20Longaniza%20-%2010%2005%202025.wav" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
     </div>
   </div>`,
 }));
