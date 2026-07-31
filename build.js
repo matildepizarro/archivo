@@ -281,9 +281,9 @@ for (let i = 0; i < shows.length; i++) {
     : `<p class="text-mp-muted text-sm">Setlist no disponible todavía.</p>`;
   const tracksHtml = s.archive
     ? `<div class="rounded-xl overflow-hidden border border-mp-surface2 bg-mp-surface2">
-        <iframe src="https://archive.org/embed/${s.archive}" width="100%" height="120" frameborder="0" style="display:block" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+        <iframe src="https://archive.org/embed/${s.archive}" width="100%" height="${Math.max(220, 60 + s.setlist.length * 30)}" frameborder="0" style="display:block" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
       </div>
-      <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/${s.archive}" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a> — reprodúcela directo en este reproductor.</p>`
+      <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/${s.archive}" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a>.</p>`
     : s.tracks.length
       ? `<div class="space-y-1">${s.tracks.map((tr, idx) => `<button onclick='MPPlayer.playQueue(${JSON.stringify(s.tracks.map((t2, i2) => ({ src: u('/public/audio/' + s.slug + '/' + t2.file), title: t2.title, subtitle: s.venue.name })))},${idx})' class="w-full text-left flex justify-between bg-mp-surface2 hover:bg-mp-surface rounded px-3 py-2 text-sm"><span>${idx + 1}. ${tr.title}</span><span class="text-mp-muted">▶</span></button>`).join('')}</div>`
       : `<p class="text-mp-muted text-sm">Todavía no hay audio subido para este show. Para agregarlo: pon los mp3 en <code>public/audio/${s.slug}/</code> y agrégalos en <code>data.js</code> dentro de <code>tracks</code> de este show.</p>`;
