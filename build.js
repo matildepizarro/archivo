@@ -295,21 +295,25 @@ for (let i = 0; i < shows.length; i++) {
     <a href="${u('/shows/')}" class="text-mp-muted hover:text-mp-accent">Todos los shows</a>
     ${next ? `<a href="${u('/shows/' + next.slug + '/')}" class="text-mp-accent hover:underline">${fmtDateShort(next.date)} →</a>` : '<span></span>'}
   </div>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="md:col-span-2">
-      <p class="text-mp-accent text-sm mb-1">${fmtDate(s.date)}</p>
-      <h1 class="font-display text-3xl mb-1">${s.venue.name}</h1>
-      <p class="text-mp-muted mb-4">${s.venue.city}${s.venue.address ? ', ' + s.venue.address : ''}</p>
+  <div class="flex items-start gap-4 mb-6 flex-wrap">
+    ${s.poster ? `<img src="${u('/public/images/' + s.poster)}" class="w-20 h-20 rounded-lg object-cover border border-mp-surface2 shrink-0" alt="">` : ''}
+    <div class="min-w-0">
+      <p class="text-mp-accent text-sm mb-0.5">${fmtDate(s.date)}</p>
+      <h1 class="font-display text-3xl mb-0.5">${s.venue.name}</h1>
+      <p class="text-mp-muted text-sm mb-2">${s.venue.city}${s.venue.address ? ', ' + s.venue.address : ''}</p>
       ${tagsHtml}
-      ${s.notes ? `<p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">${s.notes}</p>` : ''}
-      <button data-fav-slug="${s.slug}" data-fav-title="${s.venue.name}" data-fav-subtitle="${fmtDateShort(s.date)} · ${s.venue.city}" class="mb-6 text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition">☆ Agregar a favoritos</button>
-      <h2 class="font-display text-xl mb-3">Setlist</h2>
-      ${setlist}
     </div>
-    <div>
-      ${poster}
-      <h2 class="font-display text-xl mt-6 mb-3">Grabación</h2>
+    <button data-fav-slug="${s.slug}" data-fav-title="${s.venue.name}" data-fav-subtitle="${fmtDateShort(s.date)} · ${s.venue.city}" class="ml-auto text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition shrink-0">☆ Agregar a favoritos</button>
+  </div>
+  ${s.notes ? `<p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">${s.notes}</p>` : ''}
+  <div class="grid lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <h2 class="font-display text-2xl mb-3">Grabación</h2>
       ${tracksHtml}
+    </div>
+    <div class="text-sm">
+      <h2 class="font-display text-base text-mp-muted mb-2 uppercase tracking-widest">Setlist</h2>
+      <div class="opacity-90 text-sm">${setlist}</div>
     </div>
   </div>`;
   write('shows/' + s.slug, layout({ title: `${fmtDateShort(s.date)} - ${s.venue.name}`, active: 'shows', content }));

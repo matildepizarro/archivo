@@ -75,18 +75,18 @@
     }));
 
     container.innerHTML = `
-      <div class="flex items-center justify-between px-4 py-3 border-b border-mp-surface2">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-mp-surface2">
         <span class="text-xs uppercase tracking-widest text-mp-muted">Grabación completa</span>
-        <button id="ia-play-all" class="w-9 h-9 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center hover:opacity-90 transition" title="Reproducir todo">▶</button>
+        <button id="ia-play-all" class="w-12 h-12 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center hover:opacity-90 transition text-lg" title="Reproducir todo">▶</button>
       </div>
       <div id="ia-tracklist">
         ${tracks.map((t, i) => `
-          <button data-idx="${i}" class="ia-row w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm hover:bg-mp-surface2 transition text-left border-b border-mp-surface2/60 last:border-b-0">
-            <span class="flex items-center gap-3 min-w-0">
-              <span class="ia-row-num text-mp-muted w-5 text-right shrink-0">${i + 1}</span>
-              <span class="ia-row-title truncate">${t.title}</span>
+          <button data-idx="${i}" class="ia-row w-full flex items-center justify-between gap-3 px-5 py-3.5 text-base hover:bg-mp-surface2 transition text-left border-b border-mp-surface2/60 last:border-b-0">
+            <span class="flex items-center gap-4 min-w-0">
+              <span class="ia-row-num text-mp-muted w-6 text-right shrink-0">${i + 1}</span>
+              <span class="ia-row-title truncate font-medium">${t.title}</span>
             </span>
-            <span class="text-mp-muted text-xs shrink-0">${t.duration ? fmtTime(t.duration) : ''}</span>
+            <span class="text-mp-muted text-sm shrink-0">${t.duration ? fmtTime(t.duration) : ''}</span>
           </button>`).join('')}
       </div>`;
 
