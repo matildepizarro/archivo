@@ -1,6 +1,23 @@
 {
   "shows": [
     {
+      "date": "2026-01-03",
+      "venue": {
+        "slug": "cerveceria-popular-valparaiso",
+        "name": "Cervecería Popular",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "public": true,
+      "slug": "2026-01-03-cerveceria-popular-valparaiso"
+    },
+    {
       "date": "2026-02-28",
       "venue": {
         "slug": "maka-house-valparaiso",
@@ -48,6 +65,7 @@
       "tracks": [],
       "public": true,
       "archive": "matilde-pizarro-at-gizzday3",
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/maka-house-valparaiso-chile-6375d22b.html",
       "slug": "2026-02-28-maka-house-valparaiso"
     },
     {
@@ -124,6 +142,7 @@
       "tracks": [],
       "public": true,
       "archive": "03-fondomatilde-pizarro-at-la-sesion-cafe-villa-alemana-chile",
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/la-sesion-cafe-villa-alemana-chile-7b75d238.html",
       "slug": "2026-03-28-la-sesion-cafe-villa-alemana"
     },
     {
@@ -193,7 +212,87 @@
       "tracks": [],
       "public": true,
       "archive": "20-2026-matilde-pizarro-at-cafe-journal-vina-del-mar-chile",
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/cafe-journal-vina-del-mar-chile-6b75aa66.html",
       "slug": "2026-05-20-cafe-journal-vina-del-mar"
+    },
+    {
+      "date": "2026-05-30",
+      "venue": {
+        "slug": "bar-la-puerta-amarilla-santiago",
+        "name": "Bar La Puerta Amarilla",
+        "city": "Santiago",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Bar La Puerta Amarilla, Santiago.",
+      "tags": [],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "Mattel Special Projects Band – Big Band Beat",
+          "slug": "mattel-special-projects-band-big-band-beat"
+        },
+        {
+          "position": 2,
+          "title": "OCELO",
+          "slug": "ocelo"
+        },
+        {
+          "position": 3,
+          "title": "OCASO CIRCULAR",
+          "slug": "ocaso-circular"
+        },
+        {
+          "position": 4,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 5,
+          "title": "LOS CAMINOS",
+          "slug": "los-caminos"
+        },
+        {
+          "position": 6,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 7,
+          "title": "INCOGNITO",
+          "slug": "incognito"
+        },
+        {
+          "position": 8,
+          "title": "FONDO",
+          "slug": "fondo"
+        },
+        {
+          "position": 9,
+          "title": "EL FINAL",
+          "slug": "el-final"
+        },
+        {
+          "position": 10,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        },
+        {
+          "position": 11,
+          "title": "TEXTURAS",
+          "slug": "texturas"
+        },
+        {
+          "position": 12,
+          "title": "Black Tooth",
+          "slug": "black-tooth"
+        }
+      ],
+      "tracks": [],
+      "public": true,
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/bar-la-puerta-amarilla-santiago-chile-7b75aa5c.html",
+      "slug": "2026-05-30-bar-la-puerta-amarilla-santiago"
     },
     {
       "date": "2026-06-18",
@@ -268,7 +367,82 @@
       "tracks": [],
       "public": true,
       "archive": "matilde-pizarro-at-hotzenplotz-valparaiso-chile",
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/hotzenplotz-valparaiso-chile-7b75aa50.html",
       "slug": "2026-06-18-hotzenplotz-valparaiso"
+    },
+    {
+      "date": "2026-06-27",
+      "venue": {
+        "slug": "plaza-sucre-vina-del-mar",
+        "name": "Plaza Sucre",
+        "city": "Viña del Mar",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Marcha LGBT, Viña del Mar.",
+      "tags": [
+        {
+          "slug": "marcha",
+          "name": "Marcha / evento comunitario",
+          "showCount": 1
+        }
+      ],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 2,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 3,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        }
+      ],
+      "tracks": [],
+      "public": true,
+      "setlistfm": "https://www.setlist.fm/setlist/matilde-pizarro/2026/plaza-sucre-vina-del-mar-chile-6b72524e.html",
+      "slug": "2026-06-27-plaza-sucre-vina-del-mar"
+    },
+    {
+      "date": "2026-08-14",
+      "venue": {
+        "slug": "cafe-misp-villa-alemana",
+        "name": "Café Misp",
+        "city": "Villa Alemana",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, Café Misp, Villa Alemana.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "public": true,
+      "slug": "2026-08-14-cafe-misp-villa-alemana"
+    },
+    {
+      "date": "2026-08-15",
+      "venue": {
+        "slug": "el-pimenton-restaurant-valparaiso",
+        "name": "El Pimentón Restaurant",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, El Pimentón Restaurant, Valparaíso.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "public": true,
+      "slug": "2026-08-15-el-pimenton-restaurant-valparaiso"
     }
   ],
   "songs": [
@@ -411,7 +585,7 @@
       "name": "Bar La Puerta Amarilla",
       "city": "Santiago",
       "country": "Chile",
-      "showCount": 0
+      "showCount": 1
     },
     {
       "slug": "hotzenplotz-valparaiso",
@@ -426,35 +600,28 @@
       "name": "Plaza Sucre",
       "city": "Viña del Mar",
       "country": "Chile",
-      "showCount": 0
+      "showCount": 1
     },
     {
       "slug": "cerveceria-popular-valparaiso",
       "name": "Cervecería Popular",
       "city": "Valparaíso",
       "country": "Chile",
-      "showCount": 0
+      "showCount": 1
     },
     {
       "slug": "el-pimenton-restaurant-valparaiso",
       "name": "El Pimentón Restaurant",
       "city": "Valparaíso",
       "country": "Chile",
-      "showCount": 0
+      "showCount": 1
     },
     {
       "slug": "cafe-misp-villa-alemana",
       "name": "Café Misp",
       "city": "Villa Alemana",
       "country": "Chile",
-      "showCount": 0
-    },
-    {
-      "slug": "marcha-lgbt-vina-del-mar",
-      "name": "Marcha LGBT",
-      "city": "Viña del Mar",
-      "country": "Chile",
-      "showCount": 0
+      "showCount": 1
     }
   ],
   "tags": [
@@ -521,7 +688,7 @@
     {
       "slug": "marcha",
       "name": "Marcha / evento comunitario",
-      "showCount": 0
+      "showCount": 1
     }
   ]
 }

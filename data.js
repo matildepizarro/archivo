@@ -19,7 +19,6 @@ const VENUES = [
   { slug: 'cerveceria-popular-valparaiso', name: 'Cervecería Popular', city: 'Valparaíso', country: 'Chile' },
   { slug: 'el-pimenton-restaurant-valparaiso', name: 'El Pimentón Restaurant', city: 'Valparaíso', country: 'Chile' },
   { slug: 'cafe-misp-villa-alemana', name: 'Café Misp', city: 'Villa Alemana', country: 'Chile' },
-  { slug: 'marcha-lgbt-vina-del-mar', name: 'Marcha LGBT', city: 'Viña del Mar', country: 'Chile' },
 ];
 
 // Categorías fijas de "Etiquetas de show" (equivalentes a las de tapes.kglw.net, en español).
@@ -52,7 +51,7 @@ const SHOWS = [
   {
     date: '2026-01-03', venue: 'cerveceria-popular-valparaiso', poster: null,
     notes: 'Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.',
-    tags: [], setlist: [], tracks: [], public: false,
+    tags: [], setlist: [], tracks: [], public: true,
   },
   {
     date: '2026-02-28', venue: 'maka-house-valparaiso', poster: 'GIZZDAY_3.png',
@@ -61,6 +60,7 @@ const SHOWS = [
     setlist: ['Theia', 'The Silver Cord', 'Sad Pilot', 'LUNAR'],
     tracks: [], public: true,
     archive: 'matilde-pizarro-at-gizzday3',
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/maka-house-valparaiso-chile-6375d22b.html',
   },
   {
     date: '2026-03-28', venue: 'la-sesion-cafe-villa-alemana', poster: 'LA_SESION_CAFE.jpg',
@@ -69,6 +69,7 @@ const SHOWS = [
     setlist: ['OCASO CIRCULAR', 'LOS CAMINOS', 'FONDO', 'LUNAR', 'LETARGO', 'Slowdive', '40 Days', 'Myth', 'EL FINAL'],
     tracks: [], public: true,
     archive: '03-fondomatilde-pizarro-at-la-sesion-cafe-villa-alemana-chile',
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/la-sesion-cafe-villa-alemana-chile-7b75d238.html',
   },
   {
     date: '2026-05-20', venue: 'cafe-journal-vina-del-mar', poster: 'JOURNAL.jpeg',
@@ -77,13 +78,15 @@ const SHOWS = [
     setlist: ['LUNAR', 'LOS CAMINOS', 'INCOGNITO', 'OCELO', 'FONDO', 'TEXTURAS', 'OCASO CIRCULAR', 'VUELO', 'LLAMAS', 'EL FINAL'],
     tracks: [], public: true,
     archive: '20-2026-matilde-pizarro-at-cafe-journal-vina-del-mar-chile',
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/cafe-journal-vina-del-mar-chile-6b75aa66.html',
   },
   {
     date: '2026-05-30', venue: 'bar-la-puerta-amarilla-santiago', poster: null,
     notes: 'Bar La Puerta Amarilla, Santiago.',
     tags: [],
     setlist: ['Mattel Special Projects Band – Big Band Beat', 'OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'FONDO', 'EL FINAL', 'LLAMAS', 'TEXTURAS', 'Black Tooth'],
-    tracks: [], public: false,
+    tracks: [], public: true,
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/bar-la-puerta-amarilla-santiago-chile-7b75aa5c.html',
   },
   {
     date: '2026-06-18', venue: 'hotzenplotz-valparaiso', poster: 'HOTZENPLOTZ.jpeg',
@@ -92,23 +95,25 @@ const SHOWS = [
     setlist: ['OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'River of Deceit', 'FONDO', 'EL FINAL', 'LETARGO', 'LLAMAS'],
     tracks: [], public: true,
     archive: 'matilde-pizarro-at-hotzenplotz-valparaiso-chile',
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/hotzenplotz-valparaiso-chile-7b75aa50.html',
   },
   {
-    date: '2026-06-27', venue: 'marcha-lgbt-vina-del-mar', poster: null,
+    date: '2026-06-27', venue: 'plaza-sucre-vina-del-mar', poster: null,
     notes: 'Marcha LGBT, Viña del Mar.',
     tags: ['marcha'],
     setlist: ['LUNAR', 'VUELO', 'LLAMAS'],
-    tracks: [], public: false,
+    tracks: [], public: true,
+    setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/plaza-sucre-vina-del-mar-chile-6b72524e.html',
   },
   {
     date: '2026-08-14', venue: 'cafe-misp-villa-alemana', poster: null,
     notes: 'Matilde Pizarro en vivo, Café Misp, Villa Alemana.',
-    tags: [], setlist: [], tracks: [], public: false,
+    tags: [], setlist: [], tracks: [], public: true,
   },
   {
     date: '2026-08-15', venue: 'el-pimenton-restaurant-valparaiso', poster: null,
     notes: 'Matilde Pizarro en vivo, El Pimentón Restaurant, Valparaíso.',
-    tags: [], setlist: [], tracks: [], public: false,
+    tags: [], setlist: [], tracks: [], public: true,
   },
 ];
 

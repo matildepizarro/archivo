@@ -103,7 +103,6 @@ ${footer()}
 <script src="${u('/public/js/pjax.js')}"></script>
 <script src="${u('/public/js/player.js')}"></script>
 <script src="${u('/public/js/archive-player.js')}"></script>
-<script src="${u('/public/js/favourites.js')}"></script>
 </body>
 </html>`;
 }
@@ -142,8 +141,7 @@ function nav(active) {
           <a href="${u('/notables/#votados')}" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Votadas por usuarios</a>
         </div>
       </details>
-      ${navLink(u('/top-shows/'), 'Top Shows', active, 'top')}
-      ${navLink(u('/favourites/'), 'Shows Favoritos', active, 'fav')}
+      ${navLink(u('/dates/') + '#proximas', 'Fechas Futuras', active, 'futuras')}
       ${navLink(u('/settings/'), 'Configuración', active, 'settings')}
       <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent transition">Acerca de</a>
       <form action="${u('/search/')}" method="get" class="flex items-center gap-1">
@@ -156,7 +154,7 @@ function nav(active) {
 
 function footer() {
   return `<footer class="border-t border-mp-surface2/60 text-center text-xs text-mp-muted py-6">
-  <p>${SITE.name} — archivo no oficial de grabaciones en vivo. Hecho con cariño en Villa Alemana, Valparaíso.</p>
+  <p>Matilde Pizarro Tapes , archivo oficial de grabaciones en vivo, los tkm</p>
   <p class="mt-2 flex items-center justify-center gap-3 flex-wrap">
     <a href="${LINKS.spotify}" target="_blank" rel="noopener" class="hover:text-mp-accent">Spotify</a>
     <a href="${LINKS.appleMusic}" target="_blank" rel="noopener" class="hover:text-mp-accent">Apple Music</a>
@@ -168,6 +166,11 @@ function footer() {
     <a href="${LINKS.whatsapp}" target="_blank" rel="noopener" class="hover:text-mp-accent">WhatsApp</a>
   </p>
   <p class="mt-1"><a href="${u('/data.json')}" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent">Acerca de</a></p>
+  <p class="mt-3">
+    <a href="${u('/secreto/')}" title="???" class="inline-block opacity-40 hover:opacity-100 transition" aria-label="???">
+      <img src="${u('/public/images/cocodrilo.png')}" alt="" class="w-8 h-8 object-contain inline-block">
+    </a>
+  </p>
 </footer>
 <div id="player-bar" class="fixed bottom-0 left-0 right-0 bg-mp-surface border-t border-mp-surface2 z-50 hidden">
   <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3 flex-wrap">
@@ -374,13 +377,15 @@ for (let i = 0; i < shows.length; i++) {
       <p class="text-mp-muted text-sm mb-2">${s.venue.city}${s.venue.address ? ', ' + s.venue.address : ''}</p>
       ${tagsHtml}
     </div>
-    <button data-fav-slug="${s.slug}" data-fav-title="${s.venue.name}" data-fav-subtitle="${fmtDateShort(s.date)} · ${s.venue.city}" class="ml-auto text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition shrink-0">☆ Agregar a favoritos</button>
   </div>
   ${s.notes ? `<p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">${s.notes}</p>` : ''}
   <h2 class="font-display text-3xl mb-4">Grabación</h2>
   ${tracksHtml}
   <div class="mt-10 pt-6 border-t border-mp-surface2">
-    <h2 class="font-display text-sm text-mp-muted mb-3 uppercase tracking-widest">Setlist</h2>
+    <div class="flex items-center justify-between gap-3 flex-wrap mb-3">
+      <h2 class="font-display text-sm text-mp-muted uppercase tracking-widest">Setlist</h2>
+      ${s.setlistfm ? `<a href="${s.setlistfm}" target="_blank" rel="noopener" class="text-xs text-mp-accent hover:underline">Ver fuente en Setlist.fm ↗</a>` : ''}
+    </div>
     <div class="text-mp-muted text-sm opacity-80 columns-2 sm:columns-3 gap-x-8">${setlist}</div>
   </div>`;
   write('shows/' + s.slug, layout({ title: `${fmtDateShort(s.date)} - ${s.venue.name}`, active: 'shows', content }));
@@ -467,29 +472,49 @@ for (const t of TAGS) {
 }
 
 // ---------- Dates ----------
-write('dates', layout({
-  title: 'Fechas', active: 'dates',
-  content: `<h1 class="font-display text-3xl mb-6">Fechas</h1><p class="text-mp-muted text-sm mb-6">Listado cronológico completo de todas las fechas de shows.</p>
-  <div class="space-y-2">${shows.map(showRow).join('')}</div>`,
-}));
+{
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const futureShows = shows.filter(s => s.date >= todayISO).slice().sort((a, b) => a.date.localeCompare(b.date));
+  const pastShows = shows.filter(s => s.date < todayISO).slice().sort((a, b) => b.date.localeCompare(a.date));
 
-// ---------- Top Shows ----------
-write('top-shows', layout({
-  title: 'Top Shows', active: 'top',
-  content: `<h1 class="font-display text-3xl mb-6">Top Shows</h1><p class="text-mp-muted text-sm mb-6">Los shows destacados por la comunidad. Vota tu favorito en Instagram o cuéntanos directamente — el ranking por estrellas se activará cuando el sitio tenga backend propio.</p>
-  <div class="space-y-2">${shows.slice().reverse().map(showRow).join('')}</div>`,
-}));
+  function dateRow(s, isFuture) {
+    const hasRecording = !!s.archive || (s.tracks && s.tracks.length > 0);
+    const borderClass = isFuture ? 'border-mp-accent2/60' : (hasRecording ? 'border-mp-accent/60' : 'border-mp-surface2');
+    const textClass = isFuture ? 'text-mp-text' : (hasRecording ? 'text-mp-accent' : 'text-mp-muted');
+    const badge = isFuture
+      ? `<span class="text-[10px] bg-mp-accent2/20 text-mp-accent2 px-2 py-0.5 rounded-full font-semibold">próximo</span>`
+      : hasRecording
+        ? `<span class="text-[10px] bg-mp-accent/20 text-mp-accent px-2 py-0.5 rounded-full font-semibold">🎧 grabación</span>`
+        : `<span class="text-[10px] text-mp-muted">sin grabación</span>`;
+    return `<a href="${u('/shows/' + s.slug + '/')}" class="flex items-center justify-between bg-mp-surface hover:bg-mp-surface2 rounded-lg px-4 py-3 border ${borderClass} gap-3 flex-wrap">
+      <span class="${textClass}">${s.venue.name}, ${s.venue.city} — ${fmtDateShort(s.date)}</span>
+      <span class="flex items-center gap-2 flex-wrap">
+        ${s.tags.map(t => `<span class="text-[10px] bg-mp-surface2 text-mp-muted px-2 py-0.5 rounded-full">${t.name}</span>`).join('')}
+        ${badge}
+      </span>
+    </a>`;
+  }
+
+  write('dates', layout({
+    title: 'Fechas', active: 'dates',
+    content: `<h1 class="font-display text-3xl mb-2">Fechas</h1>
+    <p class="text-mp-muted text-sm mb-8">Todas las fechas donde Matilde Pizarro se ha presentado, o se presentará.</p>
+
+    <section id="proximas" class="mb-10">
+      <h2 class="font-display text-xl mb-3 text-mp-accent2">📅 Fechas futuras</h2>
+      <div class="space-y-2">${futureShows.length ? futureShows.map(s => dateRow(s, true)).join('') : '<p class="text-mp-muted text-sm">No hay fechas confirmadas por ahora — revisa el widget de próximos shows en el inicio.</p>'}</div>
+    </section>
+
+    <section id="pasadas">
+      <h2 class="font-display text-xl mb-2">🗓️ Fechas pasadas</h2>
+      <p class="text-mp-muted text-xs mb-3">En <span class="text-mp-accent">celeste</span>, las fechas con grabación disponible. En gris, fechas tocadas sin registro de audio.</p>
+      <div class="space-y-2">${pastShows.map(s => dateRow(s, false)).join('')}</div>
+    </section>`,
+  }));
+}
 
 // ---------- About: eliminado — ahora enlaza directo al presskit externo ----------
 // https://matildepizarro.github.io/presskit/ (ver nav() y footer())
-
-// ---------- Favourites (client-side via Dexie/IndexedDB) ----------
-write('favourites', layout({
-  title: 'Shows Favoritos', active: 'fav',
-  content: `<h1 class="font-display text-3xl mb-6">Shows Favoritos</h1>
-  <div id="favourites-list"></div>
-  <script>document.addEventListener('DOMContentLoaded', function(){ /* favourites.js maneja el render */ });</script>`,
-}));
 
 // ---------- Settings ----------
 write('settings', layout({
@@ -533,6 +558,26 @@ write('search', layout({
     });
   })();
   </script>`,
+}));
+
+// ---------- 🐊 Secreto: Kien Gizza La Longaniza (solo accesible vía el cocodrilo del footer) ----------
+write('secreto', layout({
+  title: '???', active: '',
+  extraHead: `<meta name="robots" content="noindex,nofollow">`,
+  content: `<h1 class="font-display text-3xl mb-2">🐊 Registro secreto</h1>
+  <p class="text-mp-muted text-sm mb-8">Encontraste el cocodrilo. Esto no es Matilde Pizarro — es el archivo, muy no oficial, de <strong>Kien Gizza La Longaniza</strong>.</p>
+  <div class="space-y-6">
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
+      <p class="text-mp-muted text-sm mb-3">28/02/2026</p>
+      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+    </div>
+    <div class="bg-mp-surface border border-mp-surface2 rounded-xl p-5">
+      <p class="font-semibold mb-1">Kien Gizza La Longaniza</p>
+      <p class="text-mp-muted text-sm mb-3">10/05/2025</p>
+      <iframe src="https://archive.org/embed/kien-gizza-la-longaniza-archivo" width="100%" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+    </div>
+  </div>`,
 }));
 
 // ---------- 404 ----------

@@ -7,17 +7,21 @@
 <meta name="description" content="Archivo no oficial de grabaciones en vivo de Matilde Pizarro.">
 <link rel="alternate" type="application/rss+xml" title="Matilde Pizarro Tapes" href="/archivo/feed.xml">
 <link rel="icon" href="/archivo/public/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 <script src="https://unpkg.com/dexie@3/dist/dexie.js"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: { mp: {
     bg:'#0f1220', surface:'#171b2e', surface2:'#1f2440', accent:'#7fb1e0', accent2:'#e08fae', text:'#e9ecf7', muted:'#8991b0'
-  } } }, fontFamily: { display: ['Georgia','serif'] } } }
+  } } }, fontFamily: { display: ['Fraunces','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] } } }
 </script>
 <style>
-  body{background:#0f1220;color:#e9ecf7}
+  body{background:#0f1220;color:#e9ecf7;font-family:'Inter',system-ui,sans-serif;letter-spacing:.005em}
   .light-mode body{background:#f4f5fb;color:#171b2e}
+  h1,h2,h3,.font-display{font-family:'Fraunces',Georgia,serif;letter-spacing:-.01em}
   ::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:#2b3155;border-radius:4px}
   .waves{background:radial-gradient(circle at 20% 20%,rgba(127,177,224,.15),transparent 40%),radial-gradient(circle at 80% 60%,rgba(224,143,174,.12),transparent 45%)}
 </style>
@@ -65,10 +69,9 @@
           <a href="/archivo/notables/#votados" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Votadas por usuarios</a>
         </div>
       </details>
-      <a href="/archivo/top-shows/" class="hover:text-mp-accent transition">Top Shows</a>
-      <a href="/archivo/favourites/" class="hover:text-mp-accent transition">Shows Favoritos</a>
+      <a href="/archivo/dates/#proximas" class="hover:text-mp-accent transition">Fechas Futuras</a>
       <a href="/archivo/settings/" class="hover:text-mp-accent transition">Configuración</a>
-      <a href="/archivo/about/" class="hover:text-mp-accent transition">Acerca de</a>
+      <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent transition">Acerca de</a>
       <form action="/archivo/search/" method="get" class="flex items-center gap-1">
         <input type="text" name="q" placeholder="Buscar…" class="bg-mp-surface2 rounded px-2 py-1 text-mp-text text-sm w-32 focus:w-48 transition-all outline-none focus:ring-1 focus:ring-mp-accent">
       </form>
@@ -78,30 +81,32 @@
 <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
 
   <div class="flex justify-between items-center mb-4 text-sm">
-    <a href="/archivo/shows/2026-06-27-marcha-lgbt-vina-del-mar/" class="text-mp-accent hover:underline">← 27/06/2026</a>
+    <a href="/archivo/shows/2026-06-27-plaza-sucre-vina-del-mar/" class="text-mp-accent hover:underline">← 27/06/2026</a>
     <a href="/archivo/shows/" class="text-mp-muted hover:text-mp-accent">Todos los shows</a>
     <a href="/archivo/shows/2026-08-15-el-pimenton-restaurant-valparaiso/" class="text-mp-accent hover:underline">15/08/2026 →</a>
   </div>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="md:col-span-2">
-      <p class="text-mp-accent text-sm mb-1">14 ago 2026</p>
-      <h1 class="font-display text-3xl mb-1">Café Misp</h1>
-      <p class="text-mp-muted mb-4">Villa Alemana</p>
+  <div class="flex items-start gap-4 mb-6 flex-wrap">
+    
+    <div class="min-w-0">
+      <p class="text-mp-accent text-sm mb-0.5">14 ago 2026</p>
+      <h1 class="font-display text-3xl mb-0.5">Café Misp</h1>
+      <p class="text-mp-muted text-sm mb-2">Villa Alemana</p>
       
-      <p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">Matilde Pizarro en vivo, Café Misp, Villa Alemana.</p>
-      <button data-fav-slug="2026-08-14-cafe-misp-villa-alemana" data-fav-title="Café Misp" data-fav-subtitle="14/08/2026 · Villa Alemana" class="mb-6 text-sm border border-mp-surface2 rounded-full px-4 py-1.5 hover:border-mp-accent transition">☆ Agregar a favoritos</button>
-      <h2 class="font-display text-xl mb-3">Setlist</h2>
-      <p class="text-mp-muted text-sm">Setlist no disponible todavía.</p>
     </div>
-    <div>
+  </div>
+  <p class="text-sm mb-6 bg-mp-surface border border-mp-surface2 rounded-lg p-4">Matilde Pizarro en vivo, Café Misp, Villa Alemana.</p>
+  <h2 class="font-display text-3xl mb-4">Grabación</h2>
+  <p class="text-mp-muted text-sm">Todavía no hay audio subido para este show. Para agregarlo: pon los mp3 en <code>public/audio/2026-08-14-cafe-misp-villa-alemana/</code> y agrégalos en <code>data.js</code> dentro de <code>tracks</code> de este show.</p>
+  <div class="mt-10 pt-6 border-t border-mp-surface2">
+    <div class="flex items-center justify-between gap-3 flex-wrap mb-3">
+      <h2 class="font-display text-sm text-mp-muted uppercase tracking-widest">Setlist</h2>
       
-      <h2 class="font-display text-xl mt-6 mb-3">Grabación</h2>
-      <p class="text-mp-muted text-sm">Todavía no hay audio subido para este show. Para agregarlo: pon los mp3 en <code>public/audio/2026-08-14-cafe-misp-villa-alemana/</code> y agrégalos en <code>data.js</code> dentro de <code>tracks</code> de este show.</p>
     </div>
+    <div class="text-mp-muted text-sm opacity-80 columns-2 sm:columns-3 gap-x-8"><p class="text-mp-muted text-sm">Setlist no disponible todavía.</p></div>
   </div>
 </main>
 <footer class="border-t border-mp-surface2/60 text-center text-xs text-mp-muted py-6">
-  <p>Matilde Pizarro Tapes — archivo no oficial de grabaciones en vivo. Hecho con cariño en Villa Alemana, Valparaíso.</p>
+  <p>Matilde Pizarro Tapes , archivo oficial de grabaciones en vivo, los tkm</p>
   <p class="mt-2 flex items-center justify-center gap-3 flex-wrap">
     <a href="https://open.spotify.com/intl-es/artist/61uAvgWnuDMNYrj2gpKxrg" target="_blank" rel="noopener" class="hover:text-mp-accent">Spotify</a>
     <a href="https://music.apple.com/cl/artist/matilde-pizarro/1893449309" target="_blank" rel="noopener" class="hover:text-mp-accent">Apple Music</a>
@@ -109,8 +114,15 @@
     <a href="https://www.youtube.com/@canalmatildepizarro" target="_blank" rel="noopener" class="hover:text-mp-accent">YouTube</a>
     <a href="https://matildepizarro.bandcamp.com/album/texturas-vuelo" target="_blank" rel="noopener" class="hover:text-mp-accent">Bandcamp</a>
     <a href="https://www.setlist.fm/setlists/matilde-pizarro-7b868e54.html" target="_blank" rel="noopener" class="hover:text-mp-accent">Setlist.fm</a>
+    <a href="mailto:matildepizarrotoro@gmail.com" class="hover:text-mp-accent">Correo</a>
+    <a href="https://wa.me/56971710225" target="_blank" rel="noopener" class="hover:text-mp-accent">WhatsApp</a>
   </p>
-  <p class="mt-1"><a href="/archivo/feed.xml" class="hover:text-mp-accent">RSS</a> · <a href="/archivo/data.json" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="/archivo/about/" class="hover:text-mp-accent">Acerca de</a></p>
+  <p class="mt-1"><a href="/archivo/data.json" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent">Acerca de</a></p>
+  <p class="mt-3">
+    <a href="/archivo/secreto/" title="???" class="inline-block opacity-40 hover:opacity-100 transition" aria-label="???">
+      <img src="/archivo/public/images/cocodrilo.png" alt="" class="w-8 h-8 object-contain inline-block">
+    </a>
+  </p>
 </footer>
 <div id="player-bar" class="fixed bottom-0 left-0 right-0 bg-mp-surface border-t border-mp-surface2 z-50 hidden">
   <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3 flex-wrap">
@@ -131,7 +143,8 @@
     </div>
   </div>
 </div>
+<script src="/archivo/public/js/pjax.js"></script>
 <script src="/archivo/public/js/player.js"></script>
-<script src="/archivo/public/js/favourites.js"></script>
+<script src="/archivo/public/js/archive-player.js"></script>
 </body>
 </html>
