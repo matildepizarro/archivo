@@ -97,6 +97,7 @@ ${content}
 </main>
 ${footer()}
 <script src="${u('/public/js/player.js')}"></script>
+<script src="${u('/public/js/archive-player.js')}"></script>
 <script src="${u('/public/js/favourites.js')}"></script>
 </body>
 </html>`;
@@ -280,8 +281,8 @@ for (let i = 0; i < shows.length; i++) {
     ? `<ol class="space-y-1">${s.setlist.map(t => `<li class="flex gap-3"><span class="text-mp-muted w-6 text-right">${t.position}.</span><a href="${u('/songs/' + t.slug + '/')}" class="hover:text-mp-accent">${t.title}</a></li>`).join('')}</ol>`
     : `<p class="text-mp-muted text-sm">Setlist no disponible todavía.</p>`;
   const tracksHtml = s.archive
-    ? `<div class="rounded-xl overflow-hidden border border-mp-surface2 bg-mp-surface2">
-        <iframe src="https://archive.org/embed/${s.archive}" width="100%" height="${Math.max(220, 60 + s.setlist.length * 30)}" frameborder="0" style="display:block" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+    ? `<div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="${s.archive}" data-title="${s.venue.name}, ${s.venue.city}" data-subtitle="${fmtDateShort(s.date)}" data-cover="${s.poster ? u('/public/images/' + s.poster) : u('/public/images/logo.png')}">
+        <div class="p-4 text-sm text-mp-muted">Cargando grabación desde archive.org…</div>
       </div>
       <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/${s.archive}" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a>.</p>`
     : s.tracks.length

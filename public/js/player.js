@@ -40,8 +40,8 @@
       src: [track.src],
       html5: true,
       rate: parseFloat(speedEl.value),
-      onplay: () => { toggleBtn.textContent = '⏸'; requestAnimationFrame(updateSeek); },
-      onpause: () => { toggleBtn.textContent = '▶'; },
+      onplay: () => { toggleBtn.textContent = '⏸'; requestAnimationFrame(updateSeek); window.dispatchEvent(new CustomEvent('mp:playstate', { detail: { playing: true, index: currentIndex } })); },
+      onpause: () => { toggleBtn.textContent = '▶'; window.dispatchEvent(new CustomEvent('mp:playstate', { detail: { playing: false, index: currentIndex } })); },
       onend: () => { playNext(); },
       onload: () => { seekEl.max = Math.floor(sound.duration()); },
     });
@@ -50,6 +50,7 @@
     bar.classList.remove('hidden');
     if (autoplay) sound.play();
     saveState(autoplay);
+    window.dispatchEvent(new CustomEvent('mp:track', { detail: { index, track, queue } }));
   }
 
   function updateSeek() {

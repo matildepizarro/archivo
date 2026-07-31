@@ -96,8 +96,8 @@
     <div>
       <img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="w-full rounded-xl border border-mp-surface2" alt="">
       <h2 class="font-display text-xl mt-6 mb-3">Grabación</h2>
-      <div class="rounded-xl overflow-hidden border border-mp-surface2 bg-mp-surface2">
-        <iframe src="https://archive.org/embed/matilde-pizarro-at-hotzenplotz-valparaiso-chile" width="100%" height="390" frameborder="0" style="display:block" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+      <div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="matilde-pizarro-at-hotzenplotz-valparaiso-chile" data-title="Hotzenplotz, Valparaíso" data-subtitle="18/06/2026" data-cover="/archivo/public/images/HOTZENPLOTZ.jpeg">
+        <div class="p-4 text-sm text-mp-muted">Cargando grabación desde archive.org…</div>
       </div>
       <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/matilde-pizarro-at-hotzenplotz-valparaiso-chile" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a>.</p>
     </div>
@@ -135,6 +135,7 @@
   </div>
 </div>
 <script src="/archivo/public/js/player.js"></script>
+<script src="/archivo/public/js/archive-player.js"></script>
 <script src="/archivo/public/js/favourites.js"></script>
 </body>
 </html>
