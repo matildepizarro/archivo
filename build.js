@@ -165,10 +165,10 @@ function footer() {
     <a href="mailto:${LINKS.email}" class="hover:text-mp-accent">Correo</a>
     <a href="${LINKS.whatsapp}" target="_blank" rel="noopener" class="hover:text-mp-accent">WhatsApp</a>
   </p>
-  <p class="mt-1"><a href="${u('/data.json')}" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent">Acerca de</a></p>
-  <p class="mt-3">
+  <p class="mt-1 flex items-center justify-center gap-2 flex-wrap">
+    <a href="${u('/data.json')}" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent">Acerca de</a>
     <a href="${u('/secreto/')}" title="???" class="inline-block opacity-40 hover:opacity-100 transition" aria-label="???">
-      <img src="${u('/public/images/cocodrilo.png')}" alt="" class="w-8 h-8 object-contain inline-block">
+      <img src="${u('/public/images/cocodrilo.png')}" alt="" class="w-6 h-6 object-contain inline-block align-middle">
     </a>
   </p>
 </footer>

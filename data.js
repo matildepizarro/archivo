@@ -16,9 +16,9 @@ const VENUES = [
   { slug: 'bar-la-puerta-amarilla-santiago', name: 'Bar La Puerta Amarilla', city: 'Santiago', country: 'Chile' },
   { slug: 'hotzenplotz-valparaiso', name: 'Hotzenplotz', city: 'Valparaíso', country: 'Chile', address: 'Héctor Calvo 331, Cerro Bellavista' },
   { slug: 'plaza-sucre-vina-del-mar', name: 'Plaza Sucre', city: 'Viña del Mar', country: 'Chile' },
-  { slug: 'cerveceria-popular-valparaiso', name: 'Cervecería Popular', city: 'Valparaíso', country: 'Chile' },
+  { slug: 'cerveceria-popular-valparaiso', name: 'Cervecería Popular', city: 'Valparaíso', country: 'Chile', address: 'Cochrane #644' },
   { slug: 'el-pimenton-restaurant-valparaiso', name: 'El Pimentón Restaurant', city: 'Valparaíso', country: 'Chile' },
-  { slug: 'cafe-misp-villa-alemana', name: 'Café Misp', city: 'Villa Alemana', country: 'Chile' },
+  { slug: 'cafe-misp-villa-alemana', name: 'Café Misp', city: 'Villa Alemana', country: 'Chile', address: 'Victoria 797' },
 ];
 
 // Categorías fijas de "Etiquetas de show" (equivalentes a las de tapes.kglw.net, en español).
@@ -49,9 +49,9 @@ const SONGS = [...ORIGINALS, ...COVERS];
 // `archive` = identificador del ítem en archive.org, para incrustar el reproductor embebido (streaming real).
 const SHOWS = [
   {
-    date: '2026-01-03', venue: 'cerveceria-popular-valparaiso', poster: null,
-    notes: 'Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.',
-    tags: [], setlist: [], tracks: [], public: true,
+    date: '2026-01-03', venue: 'cerveceria-popular-valparaiso', poster: 'CERVECERIA_POPULAR.webp',
+    notes: 'Hack-Trick de Beats. Desde las 20:00 hrs, $2.000. Open show: Zifa. Invitado especial: Oriente Damage. Show de beats: Matilde Pizarro, Beatsent, Kaptos.',
+    tags: ['dj'], setlist: [], tracks: [], public: true,
   },
   {
     date: '2026-02-28', venue: 'maka-house-valparaiso', poster: 'GIZZDAY_3.png',
@@ -81,9 +81,9 @@ const SHOWS = [
     setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/cafe-journal-vina-del-mar-chile-6b75aa66.html',
   },
   {
-    date: '2026-05-30', venue: 'bar-la-puerta-amarilla-santiago', poster: null,
-    notes: 'Bar La Puerta Amarilla, Santiago.',
-    tags: [],
+    date: '2026-05-30', venue: 'bar-la-puerta-amarilla-santiago', poster: 'LA_PUERTA_AMARILLA.png',
+    notes: 'KGLL — noche tributo a King Gizzard & The Lizard Wizard. Bar La Puerta Amarilla, Santiago.',
+    tags: ['evento-tributo'],
     setlist: ['Mattel Special Projects Band – Big Band Beat', 'OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'FONDO', 'EL FINAL', 'LLAMAS', 'TEXTURAS', 'Black Tooth'],
     tracks: [], public: true,
     setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/bar-la-puerta-amarilla-santiago-chile-7b75aa5c.html',
@@ -98,7 +98,7 @@ const SHOWS = [
     setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/hotzenplotz-valparaiso-chile-7b75aa50.html',
   },
   {
-    date: '2026-06-27', venue: 'plaza-sucre-vina-del-mar', poster: null,
+    date: '2026-06-27', venue: 'plaza-sucre-vina-del-mar', poster: 'PLAZA_SUCRE_MARCHA.jpeg',
     notes: 'Marcha LGBT, Viña del Mar.',
     tags: ['marcha'],
     setlist: ['LUNAR', 'VUELO', 'LLAMAS'],
@@ -106,9 +106,9 @@ const SHOWS = [
     setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/plaza-sucre-vina-del-mar-chile-6b72524e.html',
   },
   {
-    date: '2026-08-14', venue: 'cafe-misp-villa-alemana', poster: null,
-    notes: 'Matilde Pizarro en vivo, Café Misp, Villa Alemana.',
-    tags: [], setlist: [], tracks: [], public: true,
+    date: '2026-08-14', venue: 'cafe-misp-villa-alemana', poster: 'CAFE_MISP.jpeg',
+    notes: 'Matilde Pizarro en vivo. Viernes 14 de agosto, 18:00 hrs, entrada liberada. Victoria 797, Villa Alemana.',
+    tags: ['entrada-liberada'], setlist: [], tracks: [], public: true,
   },
   {
     date: '2026-08-15', venue: 'el-pimenton-restaurant-valparaiso', poster: null,

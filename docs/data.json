@@ -7,11 +7,18 @@
         "name": "Cervecería Popular",
         "city": "Valparaíso",
         "country": "Chile",
+        "address": "Cochrane #644",
         "showCount": 1
       },
-      "poster": null,
-      "notes": "Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.",
-      "tags": [],
+      "poster": "CERVECERIA_POPULAR.webp",
+      "notes": "Hack-Trick de Beats. Desde las 20:00 hrs, $2.000. Open show: Zifa. Invitado especial: Oriente Damage. Show de beats: Matilde Pizarro, Beatsent, Kaptos.",
+      "tags": [
+        {
+          "slug": "dj",
+          "name": "DJ",
+          "showCount": 1
+        }
+      ],
       "setlist": [],
       "tracks": [],
       "public": true,
@@ -32,7 +39,7 @@
         {
           "slug": "evento-tributo",
           "name": "Evento tributo",
-          "showCount": 1
+          "showCount": 2
         },
         {
           "slug": "festival",
@@ -89,7 +96,7 @@
         {
           "slug": "entrada-liberada",
           "name": "Entrada liberada",
-          "showCount": 1
+          "showCount": 2
         }
       ],
       "setlist": [
@@ -224,9 +231,15 @@
         "country": "Chile",
         "showCount": 1
       },
-      "poster": null,
-      "notes": "Bar La Puerta Amarilla, Santiago.",
-      "tags": [],
+      "poster": "LA_PUERTA_AMARILLA.png",
+      "notes": "KGLL — noche tributo a King Gizzard & The Lizard Wizard. Bar La Puerta Amarilla, Santiago.",
+      "tags": [
+        {
+          "slug": "evento-tributo",
+          "name": "Evento tributo",
+          "showCount": 2
+        }
+      ],
       "setlist": [
         {
           "position": 1,
@@ -379,7 +392,7 @@
         "country": "Chile",
         "showCount": 1
       },
-      "poster": null,
+      "poster": "PLAZA_SUCRE_MARCHA.jpeg",
       "notes": "Marcha LGBT, Viña del Mar.",
       "tags": [
         {
@@ -417,11 +430,18 @@
         "name": "Café Misp",
         "city": "Villa Alemana",
         "country": "Chile",
+        "address": "Victoria 797",
         "showCount": 1
       },
-      "poster": null,
-      "notes": "Matilde Pizarro en vivo, Café Misp, Villa Alemana.",
-      "tags": [],
+      "poster": "CAFE_MISP.jpeg",
+      "notes": "Matilde Pizarro en vivo. Viernes 14 de agosto, 18:00 hrs, entrada liberada. Victoria 797, Villa Alemana.",
+      "tags": [
+        {
+          "slug": "entrada-liberada",
+          "name": "Entrada liberada",
+          "showCount": 2
+        }
+      ],
       "setlist": [],
       "tracks": [],
       "public": true,
@@ -607,6 +627,7 @@
       "name": "Cervecería Popular",
       "city": "Valparaíso",
       "country": "Chile",
+      "address": "Cochrane #644",
       "showCount": 1
     },
     {
@@ -621,6 +642,7 @@
       "name": "Café Misp",
       "city": "Villa Alemana",
       "country": "Chile",
+      "address": "Victoria 797",
       "showCount": 1
     }
   ],
@@ -638,7 +660,7 @@
     {
       "slug": "dj",
       "name": "DJ",
-      "showCount": 0
+      "showCount": 1
     },
     {
       "slug": "festival",
@@ -678,12 +700,12 @@
     {
       "slug": "entrada-liberada",
       "name": "Entrada liberada",
-      "showCount": 1
+      "showCount": 2
     },
     {
       "slug": "evento-tributo",
       "name": "Evento tributo",
-      "showCount": 1
+      "showCount": 2
     },
     {
       "slug": "marcha",
