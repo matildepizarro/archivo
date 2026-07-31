@@ -49,7 +49,7 @@ const shows = SHOWS.map(s => {
     return tagBySlug[ts];
   });
   return { ...s, slug, venue, setlist, tags, tracks: s.tracks || [] };
-}).sort((a, b) => a.date.localeCompare(b.date));
+}).filter(s => s.public).sort((a, b) => a.date.localeCompare(b.date));
 
 for (const t of TAGS) {
   t.showCount = shows.filter(s => s.tags.some(x => x.slug === t.slug)).length;
@@ -279,9 +279,14 @@ for (let i = 0; i < shows.length; i++) {
   const setlist = s.setlist.length
     ? `<ol class="space-y-1">${s.setlist.map(t => `<li class="flex gap-3"><span class="text-mp-muted w-6 text-right">${t.position}.</span><a href="${u('/songs/' + t.slug + '/')}" class="hover:text-mp-accent">${t.title}</a></li>`).join('')}</ol>`
     : `<p class="text-mp-muted text-sm">Setlist no disponible todavía.</p>`;
-  const tracksHtml = s.tracks.length
-    ? `<div class="space-y-1">${s.tracks.map((tr, idx) => `<button onclick='MPPlayer.playQueue(${JSON.stringify(s.tracks.map((t2, i2) => ({ src: u('/public/audio/' + s.slug + '/' + t2.file), title: t2.title, subtitle: s.venue.name })))},${idx})' class="w-full text-left flex justify-between bg-mp-surface2 hover:bg-mp-surface rounded px-3 py-2 text-sm"><span>${idx + 1}. ${tr.title}</span><span class="text-mp-muted">▶</span></button>`).join('')}</div>`
-    : `<p class="text-mp-muted text-sm">Todavía no hay audio subido para este show. Para agregarlo: pon los mp3 en <code>public/audio/${s.slug}/</code> y agrégalos en <code>data.js</code> dentro de <code>tracks</code> de este show.</p>`;
+  const tracksHtml = s.archive
+    ? `<div class="rounded-xl overflow-hidden border border-mp-surface2 bg-mp-surface2">
+        <iframe src="https://archive.org/embed/${s.archive}" width="100%" height="120" frameborder="0" style="display:block" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+      </div>
+      <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/${s.archive}" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a> — reprodúcela directo en este reproductor.</p>`
+    : s.tracks.length
+      ? `<div class="space-y-1">${s.tracks.map((tr, idx) => `<button onclick='MPPlayer.playQueue(${JSON.stringify(s.tracks.map((t2, i2) => ({ src: u('/public/audio/' + s.slug + '/' + t2.file), title: t2.title, subtitle: s.venue.name })))},${idx})' class="w-full text-left flex justify-between bg-mp-surface2 hover:bg-mp-surface rounded px-3 py-2 text-sm"><span>${idx + 1}. ${tr.title}</span><span class="text-mp-muted">▶</span></button>`).join('')}</div>`
+      : `<p class="text-mp-muted text-sm">Todavía no hay audio subido para este show. Para agregarlo: pon los mp3 en <code>public/audio/${s.slug}/</code> y agrégalos en <code>data.js</code> dentro de <code>tracks</code> de este show.</p>`;
   const tagsHtml = s.tags.length ? `<div class="flex gap-2 flex-wrap mb-4">${s.tags.map(t => `<a href="${u('/tags/' + t.slug + '/')}" class="text-xs bg-mp-surface2 hover:bg-mp-accent hover:text-mp-bg text-mp-muted px-3 py-1 rounded-full transition">${t.name}</a>`).join('')}</div>` : '';
   const content = `
   <div class="flex justify-between items-center mb-4 text-sm">

@@ -2,3 +2,26 @@
 a { text-decoration: none; }
 input[type="range"] { -webkit-appearance: none; height: 4px; background: #2b3155; border-radius: 2px; }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #7fb1e0; }
+
+/* --- Fallback / hard-set colors -----------------------------------------
+   The Tailwind CDN script sometimes loads slowly or fails (ad blockers,
+   flaky connections, offline preview). When that happens every color
+   utility class (bg-mp-*, text-mp-*) silently does nothing and text shows
+   up washed-out / unreadable on top of the background gradients. These
+   rules hard-set the same palette directly so the page is always legible,
+   with or without the CDN script. */
+body { background:#0f1220 !important; color:#e9ecf7 !important; }
+.light-mode body { background:#f4f5fb !important; color:#171b2e !important; }
+a, button, li, span, p, h1, h2, h3, div { color: inherit; }
+.text-mp-muted { color:#8991b0 !important; }
+.text-mp-accent { color:#7fb1e0 !important; }
+.text-mp-accent2 { color:#e08fae !important; }
+.text-mp-text, .text-mp-bg { color:#e9ecf7 !important; }
+.bg-mp-surface { background-color:#171b2e !important; }
+.bg-mp-surface2 { background-color:#1f2440 !important; }
+.bg-mp-bg { background-color:#0f1220 !important; }
+.bg-mp-accent { background-color:#7fb1e0 !important; color:#0f1220 !important; }
+.border-mp-surface2 { border-color:#2b3155 !important; }
+.hover\:text-mp-accent:hover { color:#7fb1e0 !important; }
+.hover\:bg-mp-surface2:hover { background-color:#1f2440 !important; }
+.hover\:bg-mp-surface:hover { background-color:#171b2e !important; }

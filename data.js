@@ -46,63 +46,69 @@ const SONGS = [...ORIGINALS, ...COVERS];
 
 // Cada show: fecha, venue (slug de VENUES), notas, poster (imagen en public/images), etiquetas (slugs de TAGS),
 // setlist (lista de títulos en orden) y pistas de audio (vacío hasta que subas archivos mp3 a public/audio/<slug-del-show>/).
+// `public: true` = el show aparece listado en el sitio (home, /shows/, venues, años, etiquetas, etc.)
+// `archive` = identificador del ítem en archive.org, para incrustar el reproductor embebido (streaming real).
 const SHOWS = [
   {
     date: '2026-01-03', venue: 'cerveceria-popular-valparaiso', poster: null,
     notes: 'Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.',
-    tags: [], setlist: [], tracks: [],
+    tags: [], setlist: [], tracks: [], public: false,
   },
   {
     date: '2026-02-28', venue: 'maka-house-valparaiso', poster: 'GIZZDAY_3.png',
     notes: 'Set de Matilde Pizarro en el marco de Gizzday Vol. III, evento tributo a King Gizzard & The Lizard Wizard en Valparaíso.',
     tags: ['evento-tributo', 'festival'],
     setlist: ['Theia', 'The Silver Cord', 'Sad Pilot', 'LUNAR'],
-    tracks: [],
+    tracks: [], public: true,
+    archive: 'matilde-pizarro-at-gizzday3',
   },
   {
     date: '2026-03-28', venue: 'la-sesion-cafe-villa-alemana', poster: 'LA_SESION_CAFE.jpg',
     notes: 'Show acústico, entrada liberada, 18:00 hrs. Cafetería La Sesión, Villa Alemana.',
     tags: ['acustico', 'entrada-liberada'],
     setlist: ['OCASO CIRCULAR', 'LOS CAMINOS', 'FONDO', 'LUNAR', 'LETARGO', 'Slowdive', '40 Days', 'Myth', 'EL FINAL'],
-    tracks: [],
+    tracks: [], public: true,
+    archive: '03-fondomatilde-pizarro-at-la-sesion-cafe-villa-alemana-chile',
   },
   {
     date: '2026-05-20', venue: 'cafe-journal-vina-del-mar', poster: 'JOURNAL.jpeg',
     notes: 'Semillero del Rock en Journal Viña, junto a Jeshu y Cono Ramone. Entrada $1.000.',
     tags: [],
     setlist: ['LUNAR', 'LOS CAMINOS', 'INCOGNITO', 'OCELO', 'FONDO', 'TEXTURAS', 'OCASO CIRCULAR', 'VUELO', 'LLAMAS', 'EL FINAL'],
-    tracks: [],
+    tracks: [], public: true,
+    archive: '20-2026-matilde-pizarro-at-cafe-journal-vina-del-mar-chile',
   },
   {
     date: '2026-05-30', venue: 'bar-la-puerta-amarilla-santiago', poster: null,
     notes: 'Bar La Puerta Amarilla, Santiago.',
     tags: [],
     setlist: ['Mattel Special Projects Band – Big Band Beat', 'OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'FONDO', 'EL FINAL', 'LLAMAS', 'TEXTURAS', 'Black Tooth'],
-    tracks: [],
+    tracks: [], public: false,
   },
   {
     date: '2026-06-18', venue: 'hotzenplotz-valparaiso', poster: 'HOTZENPLOTZ.jpeg',
     notes: 'Matilde Pizarro en vivo, Hotzenplotz Bar & Restaurant, 21:00 hrs.',
     tags: [],
     setlist: ['OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'River of Deceit', 'FONDO', 'EL FINAL', 'LETARGO', 'LLAMAS'],
-    tracks: [],
+    tracks: [], public: true,
+    archive: 'matilde-pizarro-at-hotzenplotz-valparaiso-chile',
   },
   {
     date: '2026-06-27', venue: 'marcha-lgbt-vina-del-mar', poster: null,
     notes: 'Marcha LGBT, Viña del Mar.',
     tags: ['marcha'],
     setlist: ['LUNAR', 'VUELO', 'LLAMAS'],
-    tracks: [],
+    tracks: [], public: false,
   },
   {
     date: '2026-08-14', venue: 'cafe-misp-villa-alemana', poster: null,
     notes: 'Matilde Pizarro en vivo, Café Misp, Villa Alemana.',
-    tags: [], setlist: [], tracks: [],
+    tags: [], setlist: [], tracks: [], public: false,
   },
   {
     date: '2026-08-15', venue: 'el-pimenton-restaurant-valparaiso', poster: null,
     notes: 'Matilde Pizarro en vivo, El Pimentón Restaurant, Valparaíso.',
-    tags: [], setlist: [], tracks: [],
+    tags: [], setlist: [], tracks: [], public: false,
   },
 ];
 
