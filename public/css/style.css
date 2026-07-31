@@ -1,0 +1,4 @@
+/* Small extra polish beyond Tailwind CDN utility classes */
+a { text-decoration: none; }
+input[type="range"] { -webkit-appearance: none; height: 4px; background: #2b3155; border-radius: 2px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #7fb1e0; }

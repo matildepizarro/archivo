@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="mp-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEXTURAS · Matilde Pizarro Tapes</title>
+<meta name="description" content="Archivo no oficial de grabaciones en vivo de Matilde Pizarro.">
+<link rel="alternate" type="application/rss+xml" title="Matilde Pizarro Tapes" href="/archivo/feed.xml">
+<link rel="icon" href="/archivo/public/images/logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<script src="https://unpkg.com/dexie@3/dist/dexie.js"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { mp: {
+    bg:'#0f1220', surface:'#171b2e', surface2:'#1f2440', accent:'#7fb1e0', accent2:'#e08fae', text:'#e9ecf7', muted:'#8991b0'
+  } } }, fontFamily: { display: ['Georgia','serif'] } } }
+</script>
+<style>
+  body{background:#0f1220;color:#e9ecf7}
+  .light-mode body{background:#f4f5fb;color:#171b2e}
+  ::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:#2b3155;border-radius:4px}
+  .waves{background:radial-gradient(circle at 20% 20%,rgba(127,177,224,.15),transparent 40%),radial-gradient(circle at 80% 60%,rgba(224,143,174,.12),transparent 45%)}
+</style>
+<link rel="stylesheet" href="/archivo/public/css/style.css">
+<script>window.MP_BASE_PATH = "/archivo";</script>
+
+</head>
+<body class="min-h-screen flex flex-col waves pb-24">
+<header class="border-b border-mp-surface2/60 bg-mp-surface/60 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
+    <a href="/archivo/" class="flex items-center gap-3 group">
+      <img src="/archivo/public/images/logo.png" alt="Matilde Pizarro" class="w-10 h-10 rounded-full object-cover shadow-lg">
+      <span class="font-display text-xl tracking-wide group-hover:text-mp-accent transition">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
+    </a>
+    <nav class="flex flex-wrap items-center gap-4 text-sm text-mp-muted relative">
+      <a href="/archivo/shows/" class="hover:text-mp-accent transition">Shows</a>
+      <a href="/archivo/years/" class="hover:text-mp-accent transition">Años</a>
+      <a href="/archivo/venues/" class="hover:text-mp-accent transition">Venues</a>
+      <a href="/archivo/songs/" class="text-mp-accent">Canciones</a>
+      <a href="/archivo/dates/" class="hover:text-mp-accent transition">Fechas</a>
+      <details class="relative">
+        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1">Etiquetas de show <span class="text-[10px]">▾</span></summary>
+        <div class="absolute left-0 mt-2 w-64 bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50 max-h-80 overflow-y-auto">
+          <a href="/archivo/tags/" class="block px-4 py-1.5 text-mp-text hover:bg-mp-surface font-semibold">Ver todas →</a>
+          <a href="/archivo/tags/acustico/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Acústico</a>
+<a href="/archivo/tags/show-de-cumpleanos/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Show de cumpleaños</a>
+<a href="/archivo/tags/dj/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">DJ</a>
+<a href="/archivo/tags/festival/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Festival</a>
+<a href="/archivo/tags/maraton/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Maratón</a>
+<a href="/archivo/tags/banda-sonora-de-pelicula/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Banda sonora de película</a>
+<a href="/archivo/tags/orquesta/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Orquesta</a>
+<a href="/archivo/tags/sesion-de-radio/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Sesión de radio</a>
+<a href="/archivo/tags/rave/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Rave</a>
+<a href="/archivo/tags/aparicion-en-tv/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Aparición en TV</a>
+<a href="/archivo/tags/entrada-liberada/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Entrada liberada</a>
+<a href="/archivo/tags/evento-tributo/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Evento tributo</a>
+<a href="/archivo/tags/marcha/" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Marcha / evento comunitario</a>
+        </div>
+      </details>
+      <details class="relative">
+        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1">Pistas destacadas <span class="text-[10px]">▾</span></summary>
+        <div class="absolute left-0 mt-2 w-64 bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50">
+          <a href="/archivo/notables/#jams" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Jams de 20+ minutos</a>
+          <a href="/archivo/notables/#curados" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Curadas por el equipo</a>
+          <a href="/archivo/notables/#votados" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Votadas por usuarios</a>
+        </div>
+      </details>
+      <a href="/archivo/top-shows/" class="hover:text-mp-accent transition">Top Shows</a>
+      <a href="/archivo/favourites/" class="hover:text-mp-accent transition">Shows Favoritos</a>
+      <a href="/archivo/settings/" class="hover:text-mp-accent transition">Configuración</a>
+      <a href="/archivo/about/" class="hover:text-mp-accent transition">Acerca de</a>
+      <form action="/archivo/search/" method="get" class="flex items-center gap-1">
+        <input type="text" name="q" placeholder="Buscar…" class="bg-mp-surface2 rounded px-2 py-1 text-mp-text text-sm w-32 focus:w-48 transition-all outline-none focus:ring-1 focus:ring-mp-accent">
+      </form>
+    </nav>
+  </div>
+</header>
+<main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
+<h1 class="font-display text-3xl mb-1">TEXTURAS</h1><p class="text-mp-muted mb-6">Tocada 2 veces</p>
+    <div class="space-y-2"><a href="/archivo/shows/2026-05-30-bar-la-puerta-amarilla-santiago/" class="flex items-center justify-between bg-mp-surface hover:bg-mp-surface2 rounded-lg px-4 py-3 border border-mp-surface2 gap-3 flex-wrap">
+    <span>Bar La Puerta Amarilla, Santiago — 30/05/2026</span>
+    
+  </a><a href="/archivo/shows/2026-05-20-cafe-journal-vina-del-mar/" class="flex items-center justify-between bg-mp-surface hover:bg-mp-surface2 rounded-lg px-4 py-3 border border-mp-surface2 gap-3 flex-wrap">
+    <span>Café Journal, Viña del Mar — 20/05/2026</span>
+    
+  </a></div>
+</main>
+<footer class="border-t border-mp-surface2/60 text-center text-xs text-mp-muted py-6">
+  <p>Matilde Pizarro Tapes — archivo no oficial de grabaciones en vivo. Hecho con cariño en Villa Alemana, Valparaíso.</p>
+  <p class="mt-2 flex items-center justify-center gap-3 flex-wrap">
+    <a href="https://open.spotify.com/intl-es/artist/61uAvgWnuDMNYrj2gpKxrg" target="_blank" rel="noopener" class="hover:text-mp-accent">Spotify</a>
+    <a href="https://music.apple.com/cl/artist/matilde-pizarro/1893449309" target="_blank" rel="noopener" class="hover:text-mp-accent">Apple Music</a>
+    <a href="https://www.instagram.com/matildepizarro_/" target="_blank" rel="noopener" class="hover:text-mp-accent">Instagram</a>
+    <a href="https://www.youtube.com/@canalmatildepizarro" target="_blank" rel="noopener" class="hover:text-mp-accent">YouTube</a>
+    <a href="https://matildepizarro.bandcamp.com/album/texturas-vuelo" target="_blank" rel="noopener" class="hover:text-mp-accent">Bandcamp</a>
+    <a href="https://www.setlist.fm/setlists/matilde-pizarro-7b868e54.html" target="_blank" rel="noopener" class="hover:text-mp-accent">Setlist.fm</a>
+  </p>
+  <p class="mt-1"><a href="/archivo/feed.xml" class="hover:text-mp-accent">RSS</a> · <a href="/archivo/data.json" class="hover:text-mp-accent">Datos (JSON)</a> · <a href="/archivo/about/" class="hover:text-mp-accent">Acerca de</a></p>
+</footer>
+<div id="player-bar" class="fixed bottom-0 left-0 right-0 bg-mp-surface border-t border-mp-surface2 z-50 hidden">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3 flex-wrap">
+    <button id="player-toggle" class="w-10 h-10 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center font-bold text-lg shrink-0">▶</button>
+    <div class="min-w-0 flex-1">
+      <div id="player-title" class="text-sm font-semibold truncate">—</div>
+      <div id="player-subtitle" class="text-xs text-mp-muted truncate">—</div>
+      <input id="player-seek" type="range" min="0" max="100" value="0" class="w-full accent-mp-accent h-1 mt-1">
+    </div>
+    <div class="flex items-center gap-2 text-xs text-mp-muted shrink-0">
+      <span id="player-time">0:00 / 0:00</span>
+      <select id="player-speed" class="bg-mp-surface2 rounded px-1 py-0.5 text-xs">
+        <option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option>
+      </select>
+      <button id="player-prev" title="Anterior">⏮</button>
+      <button id="player-next" title="Siguiente">⏭</button>
+      <button id="player-shuffle" title="Shuffle">🔀</button>
+    </div>
+  </div>
+</div>
+<script src="/archivo/public/js/player.js"></script>
+<script src="/archivo/public/js/favourites.js"></script>
+</body>
+</html>

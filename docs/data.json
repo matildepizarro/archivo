@@ -1,0 +1,682 @@
+{
+  "shows": [
+    {
+      "date": "2026-01-03",
+      "venue": {
+        "slug": "cerveceria-popular-valparaiso",
+        "name": "Cervecería Popular",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, Cervecería Popular, Valparaíso.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "slug": "2026-01-03-cerveceria-popular-valparaiso"
+    },
+    {
+      "date": "2026-02-28",
+      "venue": {
+        "slug": "maka-house-valparaiso",
+        "name": "Maka House",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": "GIZZDAY_3.png",
+      "notes": "Set de Matilde Pizarro en el marco de Gizzday Vol. III, evento tributo a King Gizzard & The Lizard Wizard en Valparaíso.",
+      "tags": [
+        {
+          "slug": "evento-tributo",
+          "name": "Evento tributo",
+          "showCount": 1
+        },
+        {
+          "slug": "festival",
+          "name": "Festival",
+          "showCount": 1
+        }
+      ],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "Theia",
+          "slug": "theia"
+        },
+        {
+          "position": 2,
+          "title": "The Silver Cord",
+          "slug": "the-silver-cord"
+        },
+        {
+          "position": 3,
+          "title": "Sad Pilot",
+          "slug": "sad-pilot"
+        },
+        {
+          "position": 4,
+          "title": "LUNAR",
+          "slug": "lunar"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-02-28-maka-house-valparaiso"
+    },
+    {
+      "date": "2026-03-28",
+      "venue": {
+        "slug": "la-sesion-cafe-villa-alemana",
+        "name": "La Sesión Café",
+        "city": "Villa Alemana",
+        "country": "Chile",
+        "address": "Buenos Aires 897",
+        "showCount": 1
+      },
+      "poster": "LA_SESION_CAFE.jpg",
+      "notes": "Show acústico, entrada liberada, 18:00 hrs. Cafetería La Sesión, Villa Alemana.",
+      "tags": [
+        {
+          "slug": "acustico",
+          "name": "Acústico",
+          "showCount": 1
+        },
+        {
+          "slug": "entrada-liberada",
+          "name": "Entrada liberada",
+          "showCount": 1
+        }
+      ],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "OCASO CIRCULAR",
+          "slug": "ocaso-circular"
+        },
+        {
+          "position": 2,
+          "title": "LOS CAMINOS",
+          "slug": "los-caminos"
+        },
+        {
+          "position": 3,
+          "title": "FONDO",
+          "slug": "fondo"
+        },
+        {
+          "position": 4,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 5,
+          "title": "LETARGO",
+          "slug": "letargo"
+        },
+        {
+          "position": 6,
+          "title": "Slowdive",
+          "slug": "slowdive"
+        },
+        {
+          "position": 7,
+          "title": "40 Days",
+          "slug": "40-days"
+        },
+        {
+          "position": 8,
+          "title": "Myth",
+          "slug": "myth"
+        },
+        {
+          "position": 9,
+          "title": "EL FINAL",
+          "slug": "el-final"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-03-28-la-sesion-cafe-villa-alemana"
+    },
+    {
+      "date": "2026-05-20",
+      "venue": {
+        "slug": "cafe-journal-vina-del-mar",
+        "name": "Café Journal",
+        "city": "Viña del Mar",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": "JOURNAL.jpeg",
+      "notes": "Semillero del Rock en Journal Viña, junto a Jeshu y Cono Ramone. Entrada $1.000.",
+      "tags": [],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 2,
+          "title": "LOS CAMINOS",
+          "slug": "los-caminos"
+        },
+        {
+          "position": 3,
+          "title": "INCOGNITO",
+          "slug": "incognito"
+        },
+        {
+          "position": 4,
+          "title": "OCELO",
+          "slug": "ocelo"
+        },
+        {
+          "position": 5,
+          "title": "FONDO",
+          "slug": "fondo"
+        },
+        {
+          "position": 6,
+          "title": "TEXTURAS",
+          "slug": "texturas"
+        },
+        {
+          "position": 7,
+          "title": "OCASO CIRCULAR",
+          "slug": "ocaso-circular"
+        },
+        {
+          "position": 8,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 9,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        },
+        {
+          "position": 10,
+          "title": "EL FINAL",
+          "slug": "el-final"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-05-20-cafe-journal-vina-del-mar"
+    },
+    {
+      "date": "2026-05-30",
+      "venue": {
+        "slug": "bar-la-puerta-amarilla-santiago",
+        "name": "Bar La Puerta Amarilla",
+        "city": "Santiago",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Bar La Puerta Amarilla, Santiago.",
+      "tags": [],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "Mattel Special Projects Band – Big Band Beat",
+          "slug": "mattel-special-projects-band-big-band-beat"
+        },
+        {
+          "position": 2,
+          "title": "OCELO",
+          "slug": "ocelo"
+        },
+        {
+          "position": 3,
+          "title": "OCASO CIRCULAR",
+          "slug": "ocaso-circular"
+        },
+        {
+          "position": 4,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 5,
+          "title": "LOS CAMINOS",
+          "slug": "los-caminos"
+        },
+        {
+          "position": 6,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 7,
+          "title": "INCOGNITO",
+          "slug": "incognito"
+        },
+        {
+          "position": 8,
+          "title": "FONDO",
+          "slug": "fondo"
+        },
+        {
+          "position": 9,
+          "title": "EL FINAL",
+          "slug": "el-final"
+        },
+        {
+          "position": 10,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        },
+        {
+          "position": 11,
+          "title": "TEXTURAS",
+          "slug": "texturas"
+        },
+        {
+          "position": 12,
+          "title": "Black Tooth",
+          "slug": "black-tooth"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-05-30-bar-la-puerta-amarilla-santiago"
+    },
+    {
+      "date": "2026-06-18",
+      "venue": {
+        "slug": "hotzenplotz-valparaiso",
+        "name": "Hotzenplotz",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "address": "Héctor Calvo 331, Cerro Bellavista",
+        "showCount": 1
+      },
+      "poster": "HOTZENPLOTZ.jpeg",
+      "notes": "Matilde Pizarro en vivo, Hotzenplotz Bar & Restaurant, 21:00 hrs.",
+      "tags": [],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "OCELO",
+          "slug": "ocelo"
+        },
+        {
+          "position": 2,
+          "title": "OCASO CIRCULAR",
+          "slug": "ocaso-circular"
+        },
+        {
+          "position": 3,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 4,
+          "title": "LOS CAMINOS",
+          "slug": "los-caminos"
+        },
+        {
+          "position": 5,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 6,
+          "title": "INCOGNITO",
+          "slug": "incognito"
+        },
+        {
+          "position": 7,
+          "title": "River of Deceit",
+          "slug": "river-of-deceit"
+        },
+        {
+          "position": 8,
+          "title": "FONDO",
+          "slug": "fondo"
+        },
+        {
+          "position": 9,
+          "title": "EL FINAL",
+          "slug": "el-final"
+        },
+        {
+          "position": 10,
+          "title": "LETARGO",
+          "slug": "letargo"
+        },
+        {
+          "position": 11,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-06-18-hotzenplotz-valparaiso"
+    },
+    {
+      "date": "2026-06-27",
+      "venue": {
+        "slug": "marcha-lgbt-vina-del-mar",
+        "name": "Marcha LGBT",
+        "city": "Viña del Mar",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Marcha LGBT, Viña del Mar.",
+      "tags": [
+        {
+          "slug": "marcha",
+          "name": "Marcha / evento comunitario",
+          "showCount": 1
+        }
+      ],
+      "setlist": [
+        {
+          "position": 1,
+          "title": "LUNAR",
+          "slug": "lunar"
+        },
+        {
+          "position": 2,
+          "title": "VUELO",
+          "slug": "vuelo"
+        },
+        {
+          "position": 3,
+          "title": "LLAMAS",
+          "slug": "llamas"
+        }
+      ],
+      "tracks": [],
+      "slug": "2026-06-27-marcha-lgbt-vina-del-mar"
+    },
+    {
+      "date": "2026-08-14",
+      "venue": {
+        "slug": "cafe-misp-villa-alemana",
+        "name": "Café Misp",
+        "city": "Villa Alemana",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, Café Misp, Villa Alemana.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "slug": "2026-08-14-cafe-misp-villa-alemana"
+    },
+    {
+      "date": "2026-08-15",
+      "venue": {
+        "slug": "el-pimenton-restaurant-valparaiso",
+        "name": "El Pimentón Restaurant",
+        "city": "Valparaíso",
+        "country": "Chile",
+        "showCount": 1
+      },
+      "poster": null,
+      "notes": "Matilde Pizarro en vivo, El Pimentón Restaurant, Valparaíso.",
+      "tags": [],
+      "setlist": [],
+      "tracks": [],
+      "slug": "2026-08-15-el-pimenton-restaurant-valparaiso"
+    }
+  ],
+  "songs": [
+    {
+      "title": "LUNAR",
+      "slug": "lunar",
+      "timesPlayed": 6
+    },
+    {
+      "title": "EL FINAL",
+      "slug": "el-final",
+      "timesPlayed": 4
+    },
+    {
+      "title": "FONDO",
+      "slug": "fondo",
+      "timesPlayed": 4
+    },
+    {
+      "title": "LLAMAS",
+      "slug": "llamas",
+      "timesPlayed": 4
+    },
+    {
+      "title": "LOS CAMINOS",
+      "slug": "los-caminos",
+      "timesPlayed": 4
+    },
+    {
+      "title": "OCASO CIRCULAR",
+      "slug": "ocaso-circular",
+      "timesPlayed": 4
+    },
+    {
+      "title": "VUELO",
+      "slug": "vuelo",
+      "timesPlayed": 4
+    },
+    {
+      "title": "INCOGNITO",
+      "slug": "incognito",
+      "timesPlayed": 3
+    },
+    {
+      "title": "OCELO",
+      "slug": "ocelo",
+      "timesPlayed": 3
+    },
+    {
+      "title": "LETARGO",
+      "slug": "letargo",
+      "timesPlayed": 2
+    },
+    {
+      "title": "TEXTURAS",
+      "slug": "texturas",
+      "timesPlayed": 2
+    },
+    {
+      "title": "40 Days",
+      "slug": "40-days",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Black Tooth",
+      "slug": "black-tooth",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Mattel Special Projects Band – Big Band Beat",
+      "slug": "mattel-special-projects-band-big-band-beat",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Myth",
+      "slug": "myth",
+      "timesPlayed": 1
+    },
+    {
+      "title": "River of Deceit",
+      "slug": "river-of-deceit",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Sad Pilot",
+      "slug": "sad-pilot",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Slowdive",
+      "slug": "slowdive",
+      "timesPlayed": 1
+    },
+    {
+      "title": "The Silver Cord",
+      "slug": "the-silver-cord",
+      "timesPlayed": 1
+    },
+    {
+      "title": "Theia",
+      "slug": "theia",
+      "timesPlayed": 1
+    },
+    {
+      "title": "ETERNIDAD",
+      "slug": "eternidad",
+      "timesPlayed": 0
+    },
+    {
+      "title": "SOMOS IGUALES",
+      "slug": "somos-iguales",
+      "timesPlayed": 0
+    }
+  ],
+  "venues": [
+    {
+      "slug": "maka-house-valparaiso",
+      "name": "Maka House",
+      "city": "Valparaíso",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "la-sesion-cafe-villa-alemana",
+      "name": "La Sesión Café",
+      "city": "Villa Alemana",
+      "country": "Chile",
+      "address": "Buenos Aires 897",
+      "showCount": 1
+    },
+    {
+      "slug": "cafe-journal-vina-del-mar",
+      "name": "Café Journal",
+      "city": "Viña del Mar",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "bar-la-puerta-amarilla-santiago",
+      "name": "Bar La Puerta Amarilla",
+      "city": "Santiago",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "hotzenplotz-valparaiso",
+      "name": "Hotzenplotz",
+      "city": "Valparaíso",
+      "country": "Chile",
+      "address": "Héctor Calvo 331, Cerro Bellavista",
+      "showCount": 1
+    },
+    {
+      "slug": "plaza-sucre-vina-del-mar",
+      "name": "Plaza Sucre",
+      "city": "Viña del Mar",
+      "country": "Chile",
+      "showCount": 0
+    },
+    {
+      "slug": "cerveceria-popular-valparaiso",
+      "name": "Cervecería Popular",
+      "city": "Valparaíso",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "el-pimenton-restaurant-valparaiso",
+      "name": "El Pimentón Restaurant",
+      "city": "Valparaíso",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "cafe-misp-villa-alemana",
+      "name": "Café Misp",
+      "city": "Villa Alemana",
+      "country": "Chile",
+      "showCount": 1
+    },
+    {
+      "slug": "marcha-lgbt-vina-del-mar",
+      "name": "Marcha LGBT",
+      "city": "Viña del Mar",
+      "country": "Chile",
+      "showCount": 1
+    }
+  ],
+  "tags": [
+    {
+      "slug": "acustico",
+      "name": "Acústico",
+      "showCount": 1
+    },
+    {
+      "slug": "show-de-cumpleanos",
+      "name": "Show de cumpleaños",
+      "showCount": 0
+    },
+    {
+      "slug": "dj",
+      "name": "DJ",
+      "showCount": 0
+    },
+    {
+      "slug": "festival",
+      "name": "Festival",
+      "showCount": 1
+    },
+    {
+      "slug": "maraton",
+      "name": "Maratón",
+      "showCount": 0
+    },
+    {
+      "slug": "banda-sonora-de-pelicula",
+      "name": "Banda sonora de película",
+      "showCount": 0
+    },
+    {
+      "slug": "orquesta",
+      "name": "Orquesta",
+      "showCount": 0
+    },
+    {
+      "slug": "sesion-de-radio",
+      "name": "Sesión de radio",
+      "showCount": 0
+    },
+    {
+      "slug": "rave",
+      "name": "Rave",
+      "showCount": 0
+    },
+    {
+      "slug": "aparicion-en-tv",
+      "name": "Aparición en TV",
+      "showCount": 0
+    },
+    {
+      "slug": "entrada-liberada",
+      "name": "Entrada liberada",
+      "showCount": 1
+    },
+    {
+      "slug": "evento-tributo",
+      "name": "Evento tributo",
+      "showCount": 1
+    },
+    {
+      "slug": "marcha",
+      "name": "Marcha / evento comunitario",
+      "showCount": 1
+    }
+  ]
+}
