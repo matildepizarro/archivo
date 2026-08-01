@@ -98,6 +98,24 @@
 
   window.addEventListener('beforeunload', () => saveState(sound && sound.playing()));
 
+  // Panel "⋯" de opciones secundarias (prev/velocidad/shuffle) en mobile.
+  const moreBtn = document.getElementById('player-more');
+  const morePanel = document.getElementById('player-more-panel');
+  moreBtn?.addEventListener('click', () => {
+    const open = morePanel.classList.toggle('mp-panel-open');
+    moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // El alto de la barra puede cambiar (panel abierto/cerrado, texto largo
+  // en mobile, orientación, etc.) — se mide en vivo para que el padding
+  // inferior del body nunca se desincronice y tape u oculte contenido.
+  if (bar && 'ResizeObserver' in window) {
+    const ro = new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--player-h', bar.offsetHeight + 'px');
+    });
+    ro.observe(bar);
+  }
+
   // Public API used by show pages to build a queue and play a given track
   window.MPPlayer = {
     playQueue(tracks, startIndex) {

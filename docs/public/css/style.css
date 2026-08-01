@@ -1,6 +1,83 @@
 /* Small extra polish beyond Tailwind CDN utility classes */
 a { text-decoration: none; }
 
+/* Evita scroll horizontal accidental por paneles/menús que se salgan del
+   viewport en pantallas angostas (causa habitual de "bugs" en mobile). */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* --- Padding inferior dinámico del body ---------------------------------
+   Antes era un pb-24 fijo. Como la barra del reproductor puede cambiar de
+   alto en mobile (panel "⋯" abierto/cerrado, texto más largo, etc.), un
+   valor fijo se desincroniza y el contenido queda tapado o hay un hueco de
+   más. player.js mide la barra en tiempo real con ResizeObserver y actualiza
+   --player-h; acá solo consumimos esa variable. */
+.mp-body-pad { padding-bottom: calc(var(--player-h, 0px) + 1rem); transition: padding-bottom .15s ease; }
+
+/* --- Menú de navegación mobile ------------------------------------------ */
+.mp-nav-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: .5rem; font-size: 1.25rem;
+  background: transparent; color: inherit; border: none; cursor: pointer;
+}
+.mp-nav-toggle:hover { background: #1f2440; }
+.mp-nav-links {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .5rem;
+  width: 100%;
+  padding-top: .75rem;
+  margin-top: .5rem;
+  border-top: 1px solid #2b3155;
+}
+.mp-nav-links.mp-nav-open { display: flex; }
+.mp-nav-dropdown-panel {
+  position: static;
+  width: 100%;
+  margin-top: .5rem;
+}
+.mp-nav-search { width: 100%; }
+.mp-nav-search input { width: 100% !important; }
+
+@media (min-width: 768px) {
+  .mp-nav-toggle { display: none; }
+  .mp-nav-links {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    width: auto;
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
+  .mp-nav-dropdown-panel { position: absolute; left: 0; margin-top: .5rem; width: 16rem; }
+  .mp-nav-search { width: auto; }
+  .mp-nav-search input { width: 8rem !important; }
+  .mp-nav-search input:focus { width: 12rem !important; }
+}
+
+/* --- Barra del reproductor: tamaño de toque + panel "más opciones" ------ */
+.mp-tap-btn { touch-action: manipulation; }
+.mp-player-seek {
+  display: block; width: 100%; height: 4px; margin: 0;
+  border-radius: 0;
+}
+.mp-player-more-panel {
+  display: none;
+}
+.mp-player-more-panel.mp-panel-open {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 0 .5rem;
+}
+@media (min-width: 640px) {
+  .mp-player-more-btn { display: none; }
+  .mp-player-more-panel { display: flex !important; width: auto; padding: 0; }
+}
+
 /* --- Fondo rotativo del hero -------------------------------------------
    Capas de afiches apiladas; solo la que tiene .is-active es visible.
    El crossfade se produce por transición de opacity + un ligero zoom
@@ -15,6 +92,13 @@ a { text-decoration: none; }
   opacity: 1;
   transform: scale(1);
   z-index: 1;
+}
+
+/* Sombra de texto para el título/subtítulo del hero: sin esto, el título
+   se leía muy poco encima de los afiches con colores claros/saturados
+   pasando de fondo, sin importar cuánto se oscureciera el overlay. */
+.mp-hero-text {
+  text-shadow: 0 2px 10px rgba(0,0,0,.85), 0 1px 3px rgba(0,0,0,.9);
 }
 
 /* Entrada suave del contenido del hero */
@@ -103,7 +187,8 @@ a { text-decoration: none; }
   }
 }
 input[type="range"] { -webkit-appearance: none; height: 4px; background: #2b3155; border-radius: 2px; }
-input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #7fb1e0; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #7fb1e0; }
+input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #7fb1e0; border: none; }
 
 /* --- Fallback / hard-set colors -----------------------------------------
    The Tailwind CDN script sometimes loads slowly or fails (ad blockers,

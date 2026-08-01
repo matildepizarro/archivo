@@ -94,13 +94,14 @@ function layout({ title, active, content, extraHead = '' }) {
 <script>window.MP_BASE_PATH = ${JSON.stringify(BASE)};</script>
 ${extraHead}
 </head>
-<body class="min-h-screen flex flex-col waves pb-24">
+<body class="min-h-screen flex flex-col waves mp-body-pad">
 ${nav(active)}
 <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
 ${content}
 </main>
 ${footer()}
 <script src="${u('/public/js/pjax.js')}"></script>
+<script src="${u('/public/js/nav.js')}"></script>
 <script src="${u('/public/js/player.js')}"></script>
 <script src="${u('/public/js/archive-player.js')}"></script>
 </body>
@@ -113,39 +114,40 @@ function navLink(href, label, active, key) {
 }
 
 function nav(active) {
-  const tagLinks = TAGS.map(t => `<a href="${u('/tags/' + t.slug + '/')}" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">${t.name}</a>`).join('\n');
+  const tagLinks = TAGS.map(t => `<a href="${u('/tags/' + t.slug + '/')}" class="block px-4 py-2 hover:bg-mp-surface hover:text-mp-accent">${t.name}</a>`).join('\n');
   return `<header class="border-b border-mp-surface2/60 bg-mp-surface/60 backdrop-blur sticky top-0 z-40">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
-    <a href="${u('/')}" class="flex items-center gap-3 group">
-      <img src="${u('/public/images/logo.png')}" alt="Matilde Pizarro" class="w-10 h-10 rounded-full object-cover shadow-lg">
-      <span class="font-display text-xl tracking-wide group-hover:text-mp-accent transition">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <a href="${u('/')}" class="flex items-center gap-3 group min-w-0">
+      <img src="${u('/public/images/logo.png')}" alt="Matilde Pizarro" class="w-10 h-10 rounded-full object-cover shadow-lg shrink-0">
+      <span class="font-display text-lg sm:text-xl tracking-wide group-hover:text-mp-accent transition truncate">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
     </a>
-    <nav class="flex flex-wrap items-center gap-4 text-sm text-mp-muted relative">
+    <button id="nav-toggle" class="mp-nav-toggle shrink-0" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+    <nav id="nav-links" class="mp-nav-links text-sm text-mp-muted">
       ${navLink(u('/shows/'), 'Shows', active, 'shows')}
       ${navLink(u('/years/'), 'Años', active, 'years')}
       ${navLink(u('/venues/'), 'Venues', active, 'venues')}
       ${navLink(u('/songs/'), 'Canciones', active, 'songs')}
       ${navLink(u('/dates/'), 'Fechas', active, 'dates')}
-      <details class="relative">
-        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1">Etiquetas de show <span class="text-[10px]">▾</span></summary>
-        <div class="absolute left-0 mt-2 w-64 bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50 max-h-80 overflow-y-auto">
-          <a href="${u('/tags/')}" class="block px-4 py-1.5 text-mp-text hover:bg-mp-surface font-semibold">Ver todas →</a>
+      <details class="mp-nav-dropdown relative">
+        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1 py-1">Etiquetas de show <span class="text-[10px]">▾</span></summary>
+        <div class="mp-nav-dropdown-panel bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50 max-h-80 overflow-y-auto">
+          <a href="${u('/tags/')}" class="block px-4 py-2 text-mp-text hover:bg-mp-surface font-semibold">Ver todas →</a>
           ${tagLinks}
         </div>
       </details>
-      <details class="relative">
-        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1">Pistas destacadas <span class="text-[10px]">▾</span></summary>
-        <div class="absolute left-0 mt-2 w-64 bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50">
-          <a href="${u('/notables/#jams')}" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Jams de 20+ minutos</a>
-          <a href="${u('/notables/#curados')}" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Curadas por el equipo</a>
-          <a href="${u('/notables/#votados')}" class="block px-4 py-1.5 hover:bg-mp-surface hover:text-mp-accent">Votadas por usuarios</a>
+      <details class="mp-nav-dropdown relative">
+        <summary class="cursor-pointer list-none hover:text-mp-accent transition flex items-center gap-1 py-1">Pistas destacadas <span class="text-[10px]">▾</span></summary>
+        <div class="mp-nav-dropdown-panel bg-mp-surface2 border border-mp-surface rounded-lg shadow-xl py-2 z-50">
+          <a href="${u('/notables/#jams')}" class="block px-4 py-2 hover:bg-mp-surface hover:text-mp-accent">Jams de 20+ minutos</a>
+          <a href="${u('/notables/#curados')}" class="block px-4 py-2 hover:bg-mp-surface hover:text-mp-accent">Curadas por el equipo</a>
+          <a href="${u('/notables/#votados')}" class="block px-4 py-2 hover:bg-mp-surface hover:text-mp-accent">Votadas por usuarios</a>
         </div>
       </details>
       ${navLink(u('/dates/') + '#proximas', 'Fechas Futuras', active, 'futuras')}
       ${navLink(u('/settings/'), 'Configuración', active, 'settings')}
-      <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent transition">Acerca de</a>
-      <form action="${u('/search/')}" method="get" class="flex items-center gap-1">
-        <input type="text" name="q" placeholder="Buscar…" class="bg-mp-surface2 rounded px-2 py-1 text-mp-text text-sm w-32 focus:w-48 transition-all outline-none focus:ring-1 focus:ring-mp-accent">
+      <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="hover:text-mp-accent transition py-1">Acerca de</a>
+      <form action="${u('/search/')}" method="get" class="mp-nav-search flex items-center gap-1">
+        <input type="text" name="q" placeholder="Buscar…" class="bg-mp-surface2 rounded px-3 py-2 sm:py-1 text-mp-text text-sm w-full sm:w-32 sm:focus:w-48 transition-all outline-none focus:ring-1 focus:ring-mp-accent">
       </form>
     </nav>
   </div>
@@ -173,21 +175,22 @@ function footer() {
   </p>
 </footer>
 <div id="player-bar" class="fixed bottom-0 left-0 right-0 bg-mp-surface border-t border-mp-surface2 z-50 hidden">
-  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3 flex-wrap">
-    <button id="player-toggle" class="w-10 h-10 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center font-bold text-lg shrink-0">▶</button>
+  <input id="player-seek" type="range" min="0" max="100" value="0" class="mp-player-seek accent-mp-accent">
+  <div class="max-w-6xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
+    <button id="player-toggle" class="mp-tap-btn w-11 h-11 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center font-bold text-lg shrink-0">▶</button>
+    <button id="player-next" class="mp-tap-btn w-10 h-10 flex items-center justify-center text-mp-muted hover:text-mp-accent shrink-0 text-lg" title="Siguiente">⏭</button>
     <div class="min-w-0 flex-1">
       <div id="player-title" class="text-sm font-semibold truncate">—</div>
       <div id="player-subtitle" class="text-xs text-mp-muted truncate">—</div>
-      <input id="player-seek" type="range" min="0" max="100" value="0" class="w-full accent-mp-accent h-1 mt-1">
     </div>
-    <div class="flex items-center gap-2 text-xs text-mp-muted shrink-0">
-      <span id="player-time">0:00 / 0:00</span>
-      <select id="player-speed" class="bg-mp-surface2 rounded px-1 py-0.5 text-xs">
+    <button id="player-more" class="mp-tap-btn mp-player-more-btn w-10 h-10 flex items-center justify-center text-mp-muted hover:text-mp-accent shrink-0 text-lg" title="Más opciones" aria-expanded="false" aria-controls="player-more-panel">⋯</button>
+    <div id="player-more-panel" class="mp-player-more-panel items-center gap-3 text-xs text-mp-muted shrink-0">
+      <span id="player-time" class="shrink-0">0:00 / 0:00</span>
+      <select id="player-speed" class="bg-mp-surface2 rounded px-2 py-1.5 text-xs">
         <option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option>
       </select>
-      <button id="player-prev" title="Anterior">⏮</button>
-      <button id="player-next" title="Siguiente">⏭</button>
-      <button id="player-shuffle" title="Shuffle">🔀</button>
+      <button id="player-prev" class="mp-tap-btn w-9 h-9 flex items-center justify-center hover:text-mp-accent" title="Anterior">⏮</button>
+      <button id="player-shuffle" class="mp-tap-btn w-9 h-9 flex items-center justify-center hover:text-mp-accent" title="Shuffle">🔀</button>
     </div>
   </div>
 </div>`;
@@ -258,10 +261,11 @@ function tapeCard(s) {
   <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
     <div class="relative min-h-[420px] flex items-end">
       <div id="hero-bg" class="absolute inset-0 w-full h-full" data-interval="4000">${heroLayersHtml}</div>
-      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/70 to-mp-bg/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/85 to-mp-bg/60"></div>
+      <div class="absolute inset-0 bg-mp-bg/25"></div>
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
-        <h1 class="font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
-        <p class="text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
+        <h1 class="mp-hero-text font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+        <p class="mp-hero-text text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
           Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
         </p>
         <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5 animate-hero-in animate-hero-in-delay-2">
