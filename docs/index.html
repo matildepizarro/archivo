@@ -32,9 +32,9 @@
 <body class="min-h-screen flex flex-col waves mp-body-pad">
 <header class="border-b border-mp-surface2/60 bg-mp-surface/60 backdrop-blur sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-    <a href="/archivo/" class="flex items-center gap-3 group min-w-0">
+    <a href="/archivo/" class="flex items-center gap-3 group min-w-0 md:min-w-fit md:shrink-0">
       <img src="/archivo/public/images/logo.png" alt="Matilde Pizarro" class="w-10 h-10 rounded-full object-cover shadow-lg shrink-0">
-      <span class="font-display text-lg sm:text-xl tracking-wide group-hover:text-mp-accent transition truncate">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
+      <span class="font-display text-lg sm:text-xl tracking-wide group-hover:text-mp-accent transition truncate md:whitespace-nowrap">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
     </a>
     <button id="nav-toggle" class="mp-nav-toggle shrink-0" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
     <nav id="nav-links" class="mp-nav-links text-sm text-mp-muted">
@@ -84,13 +84,15 @@
   <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
     <div class="relative min-h-[420px] flex items-end">
       <div id="hero-bg" class="absolute inset-0 w-full h-full" data-interval="4000"><img src="/archivo/public/images/CERVECERIA_POPULAR.webp" class="hero-bg-layer absolute inset-0 w-full h-full object-cover is-active" alt="Matilde Pizarro" loading="eager"><img src="/archivo/public/images/GIZZDAY_3.png" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/LA_SESION_CAFE.jpg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/JOURNAL.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/LA_PUERTA_AMARILLA.png" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/HOTZENPLOTZ.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/PLAZA_SUCRE_MARCHA.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"><img src="/archivo/public/images/CAFE_MISP.jpeg" class="hero-bg-layer absolute inset-0 w-full h-full object-cover" alt="Matilde Pizarro" loading="lazy"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/85 to-mp-bg/60"></div>
-      <div class="absolute inset-0 bg-mp-bg/25"></div>
+      <div class="absolute inset-0 bg-mp-bg/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/80 to-mp-bg/45"></div>
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
-        <h1 class="mp-hero-text font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
-        <p class="mp-hero-text text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
-          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
-        </p>
+        <div class="inline-block max-w-3xl bg-mp-bg/70 backdrop-blur-sm rounded-2xl px-5 py-6 md:px-8 md:py-7 mb-8 animate-hero-in">
+          <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+          <p class="text-mp-muted max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
+          </p>
+        </div>
         <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5 animate-hero-in animate-hero-in-delay-2">
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">9</p><p class="text-mp-muted text-xs mt-1">2026–2026</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">5</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>

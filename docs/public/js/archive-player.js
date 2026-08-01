@@ -49,6 +49,9 @@
     const showTitle = container.dataset.title;
     const showSubtitle = container.dataset.subtitle;
     const cover = container.dataset.cover;
+    const isPartial = container.dataset.partial === '1';
+    let titleOverrides = [];
+    try { titleOverrides = JSON.parse(container.dataset.trackTitles || '[]'); } catch (e) { /* ignore */ }
 
     let data;
     try {
@@ -78,9 +81,9 @@
     }
 
     const baseUrl = `https://archive.org/download/${identifier}/`;
-    const tracks = list.map(f => ({
+    const tracks = list.map((f, i) => ({
       src: baseUrl + encodeURIComponent(f.name),
-      title: cleanTitle(f.name, f.title),
+      title: titleOverrides[i] || cleanTitle(f.name, f.title),
       subtitle: `${showTitle} · ${showSubtitle}`,
       duration: toSeconds(f.length),
     }));
@@ -89,9 +92,9 @@
       <div class="flex items-center gap-4 px-6 py-5 border-b border-mp-surface2 bg-mp-surface2/40">
         <img src="${cover}" class="w-16 h-16 rounded-lg object-cover border border-mp-surface2 shrink-0" alt="">
         <div class="min-w-0">
-          <p class="text-xs uppercase tracking-widest text-mp-muted">Grabación completa</p>
+          <p class="text-xs uppercase tracking-widest text-mp-muted">${isPartial ? 'Grabación parcial' : 'Grabación completa'}</p>
           <p class="font-display text-lg truncate">${showTitle}</p>
-          <p class="text-mp-muted text-sm">${showSubtitle} · ${tracks.length} pista${tracks.length === 1 ? '' : 's'}</p>
+          <p class="text-mp-muted text-sm">${showSubtitle} · ${tracks.length} pista${tracks.length === 1 ? '' : 's'}${isPartial ? ' (única grabada de este show)' : ''}</p>
         </div>
         <button id="ia-play-all" class="ml-auto w-16 h-16 rounded-full bg-mp-accent text-mp-bg flex items-center justify-center hover:opacity-90 transition text-2xl shrink-0" title="Reproducir todo">▶</button>
       </div>

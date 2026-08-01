@@ -117,9 +117,9 @@ function nav(active) {
   const tagLinks = TAGS.map(t => `<a href="${u('/tags/' + t.slug + '/')}" class="block px-4 py-2 hover:bg-mp-surface hover:text-mp-accent">${t.name}</a>`).join('\n');
   return `<header class="border-b border-mp-surface2/60 bg-mp-surface/60 backdrop-blur sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-    <a href="${u('/')}" class="flex items-center gap-3 group min-w-0">
+    <a href="${u('/')}" class="flex items-center gap-3 group min-w-0 md:min-w-fit md:shrink-0">
       <img src="${u('/public/images/logo.png')}" alt="Matilde Pizarro" class="w-10 h-10 rounded-full object-cover shadow-lg shrink-0">
-      <span class="font-display text-lg sm:text-xl tracking-wide group-hover:text-mp-accent transition truncate">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
+      <span class="font-display text-lg sm:text-xl tracking-wide group-hover:text-mp-accent transition truncate md:whitespace-nowrap">Matilde Pizarro <span class="text-mp-accent2">Tapes</span></span>
     </a>
     <button id="nav-toggle" class="mp-nav-toggle shrink-0" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
     <nav id="nav-links" class="mp-nav-links text-sm text-mp-muted">
@@ -261,13 +261,15 @@ function tapeCard(s) {
   <section class="rounded-2xl overflow-hidden relative mb-8 border border-mp-surface2">
     <div class="relative min-h-[420px] flex items-end">
       <div id="hero-bg" class="absolute inset-0 w-full h-full" data-interval="4000">${heroLayersHtml}</div>
-      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/85 to-mp-bg/60"></div>
-      <div class="absolute inset-0 bg-mp-bg/25"></div>
+      <div class="absolute inset-0 bg-mp-bg/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-mp-bg via-mp-bg/80 to-mp-bg/45"></div>
       <div class="relative z-10 w-full px-6 md:px-12 pt-16 pb-8 text-center">
-        <h1 class="mp-hero-text font-display text-3xl md:text-4xl mb-4 animate-hero-in">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
-        <p class="mp-hero-text text-mp-muted max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed animate-hero-in animate-hero-in-delay-1">
-          Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
-        </p>
+        <div class="inline-block max-w-3xl bg-mp-bg/70 backdrop-blur-sm rounded-2xl px-5 py-6 md:px-8 md:py-7 mb-8 animate-hero-in">
+          <h1 class="font-display text-3xl md:text-4xl mb-4">¡Bienvenido a Matilde Pizarro <span class="text-mp-accent">Tapes</span>!</h1>
+          <p class="text-mp-muted max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            Matilde Pizarro Tapes es un archivo de grabaciones en vivo de <a href="https://matildepizarro.github.io/presskit/" target="_blank" rel="noopener" class="text-mp-accent hover:underline">Matilde Pizarro</a>, hecho por Matilde Pizarro, gratis para siempre como debe ser.
+          </p>
+        </div>
         <div class="inline-flex flex-wrap justify-center gap-6 md:gap-10 bg-mp-surface/90 backdrop-blur border border-mp-surface2 rounded-xl px-8 py-5 animate-hero-in animate-hero-in-delay-2">
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Shows</p><p class="font-display text-3xl">${shows.length}</p><p class="text-mp-muted text-xs mt-1">${years[years.length - 1]}–${years[0]}</p></div>
           <div class="text-center"><p class="text-mp-muted text-xs uppercase tracking-widest mb-1">Grabaciones</p><p class="font-display text-3xl text-mp-accent">${withAudio}</p><p class="text-mp-muted text-xs mt-1">alojadas en archive.org</p></div>
@@ -379,7 +381,7 @@ for (let i = 0; i < shows.length; i++) {
     ? `<ol class="space-y-1">${s.setlist.map(t => `<li class="flex gap-3"><span class="text-mp-muted w-6 text-right">${t.position}.</span><a href="${u('/songs/' + t.slug + '/')}" class="hover:text-mp-accent">${t.title}</a></li>`).join('')}</ol>`
     : `<p class="text-mp-muted text-sm">Setlist no disponible todavía.</p>`;
   const tracksHtml = s.archive
-    ? `<div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="${s.archive}" data-title="${s.venue.name}, ${s.venue.city}" data-subtitle="${fmtDateShort(s.date)}" data-cover="${s.poster ? u('/public/images/' + s.poster) : u('/public/images/logo.png')}">
+    ? `<div id="ia-player" class="rounded-xl border border-mp-surface2 bg-mp-surface overflow-hidden" data-archive="${s.archive}" data-title="${s.venue.name}, ${s.venue.city}" data-subtitle="${fmtDateShort(s.date)}" data-cover="${s.poster ? u('/public/images/' + s.poster) : u('/public/images/logo.png')}" data-partial="${s.archivePartial ? '1' : ''}" data-track-titles='${JSON.stringify(s.archiveTrackTitles || [])}'>
         <div class="p-4 text-sm text-mp-muted">Cargando grabación desde archive.org…</div>
       </div>
       <p class="text-xs text-mp-muted mt-2">Grabación alojada en <a href="https://archive.org/details/${s.archive}" target="_blank" rel="noopener" class="text-mp-accent hover:underline">archive.org</a>.</p>`

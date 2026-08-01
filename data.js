@@ -87,6 +87,8 @@ const SHOWS = [
     setlist: ['Mattel Special Projects Band – Big Band Beat', 'OCELO', 'OCASO CIRCULAR', 'VUELO', 'LOS CAMINOS', 'LUNAR', 'INCOGNITO', 'FONDO', 'EL FINAL', 'LLAMAS', 'TEXTURAS', 'Black Tooth'],
     tracks: [], public: true,
     archive: 'matilde-pizarro-black-tooth-king-gizzard-the-lizard-wizard-cover-lpa-santia',
+    archivePartial: true,
+    archiveTrackTitles: ['Black Tooth'],
     setlistfm: 'https://www.setlist.fm/setlist/matilde-pizarro/2026/bar-la-puerta-amarilla-santiago-chile-7b75aa5c.html',
   },
   {
